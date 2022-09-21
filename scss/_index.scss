@@ -18,12 +18,11 @@
   flex-wrap: wrap;
   }
 
-
-  & .admin{
-    margin-left: auto;
-  }
   & .admin>a{
     color: #aaa;
+    &:hover{
+      color: $secondary;
+    }
   }
 
   & a{
@@ -38,8 +37,8 @@
     }
   }
 
-  & .logo{
-    color: redh;
+  & .logo>a{
+    font-size: 1.5rem;
     @include pad(){
       padding-left: 1.5rem;
     }
@@ -179,26 +178,39 @@
 }
 
 .bedAdvantage {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  margin-bottom: 60px;
+  padding: 1rem .5rem;
+  @include pad(){
+    display: block;
+    margin: 0 10px;
+  }
+  &-box{
+    position: relative;
+    max-width: 33%;
+    min-height: 200px;
+    background-color: $dark;
+    padding: 1%;
+
+    @include pad(){
+      max-width: 100%;
+      margin: .5rem 0;
+    }
+  }
+
+  &-img{
+    width: 100%;
+    max-height: 140px;
+    object-fit: cover;
+  }
+  &-text{
+    color: #fff;
+    text-align: center;
+    font-size: 1.25rem;
+    padding-top:1rem;
+  }
 }
 
-.bedAdvantage-img {
-  max-height: 140px;
-  -o-object-fit: cover;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-.bedAdvantage-text {
-  text-align: center;
-  font-size: 1.25rem;
-}
 
 .furniture-compare {
   background-color: #F8F8F8;
