@@ -3,152 +3,174 @@
   margin: 0 auto;
 }
 
-.topBar {
-  border-bottom: 40px solid #000000;
-  margin-bottom: 30px;
-}
+.topBar{
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 9;
 
-.topBar .wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
+  & .wrap{
   display: flex;
   position: relative;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-}
-
-@media (max-width: 1110px) {
-  .topBar .wrap {
-      padding: 0 15px;
   }
-}
 
-.topBar a {
-  display: block;
-  text-decoration: none;
-  color: #000000;
-  font-size: 1.25rem;
-}
 
-.topBar a:hover {
-  color: #6A33F8;
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
+  & .admin{
+    margin-left: auto;
+  }
+  & .admin>a{
+    color: #aaa;
+  }
 
-.topBar-menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  background-color: #FFFFFF;
-}
+  & a{
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.25rem;
 
-.topBar-menu.openMenu {
-  max-height: 300px;
-}
+    &:hover{
+      color: $primary;
+      transform: scale(1.05);
+    }
+  }
 
-.topBar-menu a {
-  padding: 36px 24px;
-  background-color: #FFFFFF;
-}
+  & .logo{
+    color: redh;
+    @include pad(){
+      padding-left: 1.5rem;
+    }
+  }
 
-.topBar-menu a:hover {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
+  &-menu{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
 
-.topBar-menu li:last-child a {
-  padding-right: 0;
-}
-
-@media (max-width: 767px) {
-  .topBar-menu {
+    @include pad(){
       position: absolute;
       top: 61px;
       left: 0;
       right: 0;
       width: 100%;
       z-index: 10;
+      background-color: $dark;
       max-height: 0;
       overflow: hidden;
-      -webkit-transition: all .2s;
       transition: all .2s;
+    }
+  }
+  &-menu.openMenu{
+    max-height: 300px;
   }
 
-  .topBar-menu li {
-      width: 100%;
-  }
-
-  .topBar-menu a {
+  &-menu a {
+    padding: 18px 24px;
+    
+    @include pad(){
       text-align: center;
       padding: 15px;
       font-size: 1rem;
+      color: #fff;
+    }
+
+    &:hover{
+      transform: scale(1.05);
+
+      @include pad(){
+        background-color: $primary;
+        color: #fff;
+      }
+    }
+    &:last-child{
+      padding-right: 0;
+    }
   }
 
-  .topBar-menu a:hover {
-      background-color: #6A33F8;
-      color: #FFFFFF;
+  &-menu li{
+    @include pad(){
+      width: 100%;
+    }
   }
-
-  .topBar-menu li:last-child a {
-      padding: 15px;
-  }
+  
 }
 
 .menuToggle {
   display: none;
   cursor: pointer;
-}
+  &:hover{
+    color: $primary;
+  }
 
-.menuToggle:hover {
-  color: #6A33FF;
-}
-
-@media (max-width: 767px) {
-  .menuToggle {
-      display: block;
-      font-size: 2rem;
-      padding: 15px;
+  @include pad(){
+    display: block;
+    font-size: 2rem;
+    padding: 15px;
   }
 }
 
-.logo {
-  padding: 36px 0;
-  font-size: 1.5rem;
-}
 
-@media (max-width: 767px) {
-  .logo {
-      padding: 15px;
-  }
-}
 
 .banner {
+  height: 100vh;
+  max-width: 100vw;
   position: relative;
   background-image: url("../asset/banner.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 420px;
-  margin-bottom: 60px;
+  overflow: hidden;
+  
+  &-decoBox{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%,-50%);
+  }
+  &-deco{
+    height: 2000px;
+    width: 1500px;
+    background-color:$dark;
+    opacity: .7;
+    transform: rotate(30deg);
+    transform-origin: center center;
+  }
+  &-text{
+    position: absolute;
+    color: #fff;
+    font-size: 5rem;
+    letter-spacing: .5rem;
+    left: 15%;
+    top: 30%;
+    font-weight: 600;
+  }
+  &-textAfter{
+    font-weight: 300;
+    margin-left: 5rem;
+  }
+  &-circular{
+    position: absolute;
+    top:65%;
+    left: 20%;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color:$primary;
+  }
+  &-describe{
+    position: absolute;
+    width: 200%;
+    letter-spacing: .5rem;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+  }
 }
 
-.banner-text {
-  position: absolute;
-  color: #FFFFFF;
-  font-size: 2rem;
-  left: 50px;
-  bottom: 50px;
-  font-weight: normal;
-}
+
 
 .section-title {
   text-align: center;
