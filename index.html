@@ -5,44 +5,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WOWOROOM家具</title>
+    <title>WOWO DESIGN</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="style/all.css">
 </head>
 
 <body>
+  <div class="app">
     <nav class="topBar">
         <div class="wrap">
-            <div><a href="./index.html" class="logo">WOWOROOM</a></div>
-            <div><a href="./admin.html">後台</a></div>
+            <div class="logo font-en"><a href="./index.html" >WOWO <span class="font-en-light">DESIGN</span></a></div>
             <span class="material-icons menuToggle">
                 menu
             </span>
             <ul class="topBar-menu">
-                <li><a href="#bedAdvantage">床墊優勢</a></li>
+                <li><a href="#bedAdvantage">產品特色</a></li>
                 <li><a href="#recommendation">好評推薦</a></li>
                 <li><a href="#transport">運送方式</a></li>
                 <li><a href="#orderInfo">立即預訂</a></li>
+                <li class="admin"><a href="./admin.html" >前往後台</a></li>
             </ul>
         </div>
     </nav>
+    <section class="banner m-b">
+      <div class="banner-decoBox">
+        <div class="banner-deco"></div>
+      </div>
+
+      <h1 class="banner-text font-en">WOWO<br><span class="banner-textAfter">DESIGN</span></h1>
+      
+      <div class="banner-circular"><h3 class="banner-describe">與您一起品味生活</h3></div>
+    </section>
     <section class="wrap" id="bedAdvantage">
-        <div class="banner">
-            <h2 class="banner-text">窩窩家居<br>跟您一起品味生活</h2>
-        </div>
-        <h3 class="section-title">床墊優勢</h3>
-        <ul class="bedAdvantage">
-            <li>
+        <h3 class="section-title">產品特色</h3>
+        <ul class="bedAdvantage m-b">
+            <li class="bedAdvantage-box">
                 <img class="bedAdvantage-img" src="./asset/advantage01.png" alt="原木料環保">
                 <p class="bedAdvantage-text">原木料環保</p>
             </li>
-            <li>
+            <li class="bedAdvantage-box">
                 <img class="bedAdvantage-img" src="./asset/advantage02.png" alt="好收納">
                 <p class="bedAdvantage-text">好收納</p>
             </li>
-            <li>
+            <li class="bedAdvantage-box">
                 <img class="bedAdvantage-img"
                     src="./asset/advantage03.png"
                     alt="好組裝">
@@ -476,6 +484,7 @@
             <input type="submit" value="送出預訂資料" class="orderInfo-btn">
         </form>
     </section>
+  </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/index-animation.js"></script>
