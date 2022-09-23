@@ -20,9 +20,6 @@
 
   & .admin>a{
     color: #aaa;
-    &:hover{
-      color: $secondary;
-    }
   }
 
   & a{
@@ -40,7 +37,7 @@
   & .logo>a{
     font-size: 1.5rem;
     @include pad(){
-      padding-left: 1.5rem;
+      padding-left: 24px;
     }
   }
 
@@ -66,9 +63,28 @@
     max-height: 300px;
   }
 
-  &-menu a {
-    padding: 18px 24px;
-    
+  &-menu a{
+    margin: 0 auto;
+    padding: 18px 25px;
+    position: relative;
+    &::after{
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(0,-50%);
+      color: $primary;
+      transition: all .5s;
+    }
+    &::before{
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(0,-50%);
+      color: $primary;
+      transition: all .5s;
+    }
     @include pad(){
       text-align: center;
       padding: 15px;
@@ -78,14 +94,26 @@
 
     &:hover{
       transform: scale(1.05);
-
+      &::after{
+        content: ']';
+        position: absolute;
+        top: 50%;
+        right: 10%;
+        transform: translate(0,-50%);
+        color: $primary;
+      }
+      &::before{
+        content: '[';
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translate(0,-50%);
+        color: $primary;
+      }
       @include pad(){
         background-color: $primary;
         color: #fff;
       }
-    }
-    &:last-child{
-      padding-right: 0;
     }
   }
 

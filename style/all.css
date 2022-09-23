@@ -118,10 +118,6 @@ body {
   color: #aaa;
 }
 
-.topBar .admin > a:hover {
-  color: #6A33FF;
-}
-
 .topBar a {
   display: block;
   text-decoration: none;
@@ -141,7 +137,7 @@ body {
 
 @media (max-width: 767px) {
   .topBar .logo > a {
-    padding-left: 1.5rem;
+    padding-left: 24px;
   }
 }
 
@@ -175,7 +171,33 @@ body {
 }
 
 .topBar-menu a {
-  padding: 18px 24px;
+  margin: 0 auto;
+  padding: 18px 25px;
+  position: relative;
+}
+
+.topBar-menu a::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  color: #9f8865;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.topBar-menu a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  color: #9f8865;
+  -webkit-transition: all .5s;
+  transition: all .5s;
 }
 
 @media (max-width: 767px) {
@@ -192,15 +214,31 @@ body {
           transform: scale(1.05);
 }
 
+.topBar-menu a:hover::after {
+  content: ']';
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  color: #9f8865;
+}
+
+.topBar-menu a:hover::before {
+  content: '[';
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  color: #9f8865;
+}
+
 @media (max-width: 767px) {
   .topBar-menu a:hover {
     background-color: #9f8865;
     color: #fff;
   }
-}
-
-.topBar-menu a:last-child {
-  padding-right: 0;
 }
 
 @media (max-width: 767px) {
