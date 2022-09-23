@@ -1,7 +1,4 @@
-.wrap {
-  max-width: 1110px;
-  margin: 0 auto;
-}
+
 
 .topBar{
   background-color: #fff;
@@ -151,6 +148,7 @@
   background-size: cover;
   overflow: hidden;
   
+  
   &-decoBox{
     position: absolute;
     top: 50%;
@@ -195,14 +193,16 @@
     top: 50%;
     left: 50%;
   }
-}
-
-
-
-.section-title {
-  text-align: center;
-  font-size: 1.75rem;
-  margin-bottom: 30px;
+  &-arrow{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    color: $primary;
+    font-size: 100px;
+  }
 }
 
 .bedAdvantage {
@@ -239,70 +239,65 @@
   }
 }
 
-
-.furniture-compare {
-  background-color: #F8F8F8;
-  padding: 50px 0 60px 0;
-}
-
-@media (max-width: 767px) {
-  .furniture-compare {
-      padding: 50px 15px 60px;
+.feature{
+  &-container{
+    overflow: hidden;
   }
-}
-
-@media (max-width: 767px) {
-  .overflowWrap {
-      overflow-x: scroll;
+  &-left{
+    width: 50%;
+    overflow: hidden;
+    float: left;
   }
-}
+  &-right{
+    width: 50%;
+    height: 50vw;
+    float: left;
+    position: relative;
 
-.compare-table {
-  width: 65%;
-  margin: 0 auto;
-}
-
-.compare-table th, .compare-table td {
-  text-align: center;
-  padding: 15px 0;
-}
-
-.compare-table th {
-  font-size: 1.25rem;
-}
-
-.compare-table tr {
-  border-bottom: 1px solid #B9B9B9;
-}
-
-.compare-table tr td:first-child {
-  text-align: left;
-  font-size: 1.25rem;
-}
-
-.compare-table .material-icons {
-  color: #6A33FF;
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
-}
-
-@media (max-width: 767px) {
-  .compare-table {
-      width: 500px;
+    &-content{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+    }
+    &-title{
+      text-align: center;
+      font-size: 2rem;
+      padding: .5rem 5rem;
+      white-space:nowrap;
+      border-bottom: $dark solid 1px;
+      margin-bottom: .5rem;
+    }
   }
+  &-items{
+    position: relative;
+    width: 50%;
+    height: 25vw;
 
-  .compare-table th, .compare-table td {
-      padding: 10px 0;
+    text-align: center;
+    float: left;
+    .items-txt{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      letter-spacing: .5rem;
+    }
+    .item-number{
+      font-size: 9rem;
+      line-height: 7rem;
+    }
   }
-
-  .compare-table th {
-      font-size: 1rem;
+  &-items img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
-  .compare-table tr td:first-child {
-      font-size: 1rem;
-  }
 }
+
 
 .text-muted {
   color: #797979;

@@ -52,13 +52,6 @@ table {
   border-spacing: 0;
 }
 
-*, *::after, *::before {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all .2s;
-  transition: all .2s;
-}
-
 html, body {
   line-height: 1.5;
 }
@@ -70,6 +63,17 @@ img {
 
 body {
   font-family: 'Noto Sans TC',-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+
+.wrap {
+  max-width: 1110px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 30px;
 }
 
 .font-en {
@@ -86,9 +90,20 @@ body {
   margin-bottom: 3rem;
 }
 
-.wrap {
-  max-width: 1110px;
-  margin: 0 auto;
+.txt-white {
+  color: #fff;
+}
+
+.txt-dark {
+  color: #2c2c2c;
+}
+
+.bg-dark {
+  background-color: #2c2c2c;
+}
+
+.d-inline {
+  display: inline;
 }
 
 .topBar {
@@ -328,10 +343,15 @@ body {
   left: 50%;
 }
 
-.section-title {
+.banner-arrow {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
   text-align: center;
-  font-size: 1.75rem;
-  margin-bottom: 30px;
+  color: #9f8865;
+  font-size: 100px;
 }
 
 .bedAdvantage {
@@ -380,65 +400,70 @@ body {
   padding-top: 1rem;
 }
 
-.furniture-compare {
-  background-color: #F8F8F8;
-  padding: 50px 0 60px 0;
+.feature-container {
+  overflow: hidden;
 }
 
-@media (max-width: 767px) {
-  .furniture-compare {
-    padding: 50px 15px 60px;
-  }
+.feature-left {
+  width: 50%;
+  overflow: hidden;
+  float: left;
 }
 
-@media (max-width: 767px) {
-  .overflowWrap {
-    overflow-x: scroll;
-  }
+.feature-right {
+  width: 50%;
+  height: 50vw;
+  float: left;
+  position: relative;
 }
 
-.compare-table {
-  width: 65%;
-  margin: 0 auto;
-}
-
-.compare-table th, .compare-table td {
+.feature-right-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   text-align: center;
-  padding: 15px 0;
 }
 
-.compare-table th {
-  font-size: 1.25rem;
+.feature-right-title {
+  text-align: center;
+  font-size: 2rem;
+  padding: .5rem 5rem;
+  white-space: nowrap;
+  border-bottom: #2c2c2c solid 1px;
+  margin-bottom: .5rem;
 }
 
-.compare-table tr {
-  border-bottom: 1px solid #B9B9B9;
+.feature-items {
+  position: relative;
+  width: 50%;
+  height: 25vw;
+  text-align: center;
+  float: left;
 }
 
-.compare-table tr td:first-child {
-  text-align: left;
-  font-size: 1.25rem;
+.feature-items .items-txt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  letter-spacing: .5rem;
 }
 
-.compare-table .material-icons {
-  color: #6A33FF;
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+.feature-items .item-number {
+  font-size: 9rem;
+  line-height: 7rem;
 }
 
-@media (max-width: 767px) {
-  .compare-table {
-    width: 500px;
-  }
-  .compare-table th, .compare-table td {
-    padding: 10px 0;
-  }
-  .compare-table th {
-    font-size: 1rem;
-  }
-  .compare-table tr td:first-child {
-    font-size: 1rem;
-  }
+.feature-items img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .text-muted {

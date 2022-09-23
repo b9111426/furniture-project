@@ -1,6 +1,17 @@
 body{
   font-family: 'Noto Sans TC',-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
+.wrap {
+  max-width: 1110px;
+  margin: 0 auto;
+} 
+
+.section-title {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 30px;
+}
+
 .font-en{
   font-family: 'Nunito';
   font-weight: 600;
@@ -11,7 +22,20 @@ body{
   font-weight: 300;
 }
 
-
 .m-b{
   margin-bottom: 3rem;
+}
+
+.txt-white{
+  color:#fff
+}
+.txt-dark{
+  color: $dark;
+}
+.bg-dark{
+  background-color: $dark;
+}
+
+.d-inline{
+  display:inline;
 }

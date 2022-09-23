@@ -52,13 +52,6 @@ table {
     border-spacing: 0;
 }
 
-*, *::after, *::before {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-transition: all .2s;
-    transition: all .2s;
-}
-
 html, body {
     line-height: 1.5;
 }
