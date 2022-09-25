@@ -218,7 +218,8 @@
     max-width: 33%;
     min-height: 200px;
     background-color: $dark;
-    padding: 1%;
+    padding: .5rem;
+    margin: 0 .2rem;
 
     @include pad(){
       max-width: 100%;
@@ -252,22 +253,37 @@
     width: 50%;
     height: 50vw;
     float: left;
-    position: relative;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &-content{
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
+      max-width: 50%;
+      max-height: 50%;
+      background-color: #fff;
+      padding: 50px;
       text-align: center;
     }
     &-title{
       text-align: center;
       font-size: 2rem;
-      padding: .5rem 5rem;
-      white-space:nowrap;
+      padding: .5rem 2rem;
       border-bottom: $dark solid 1px;
       margin-bottom: .5rem;
+    }
+    &-list{
+      max-width: 50%;
+      margin: 1rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-left: 1px solid $dark;
+    }
+    &-list li{
+      text-align: left;
+      font-size: 1.5rem;
+      margin-top: .5rem;
     }
   }
   &-items{
@@ -298,79 +314,101 @@
 
 }
 
-
-.text-muted {
-  color: #797979;
-}
-
 .recommendation {
-  background-color: #301E5F;
+  background-color: $dark;
   padding: 60px 0;
-}
 
-.recommendation h3 {
-  color: #FFFFFF;
-}
-
-@media (max-width: 767px) {
-  .recommendation {
-      padding: 60px 15px;
+  & h3{
+    color: #fff;
   }
+
+  @include pad(){
+    padding: 60px 15px;
+  }
+  &-card{
+    max-height: 33.33333%;
+    padding: 5px 20px;
+    display: flex;
+
+  }
+  &-card-end{
+    max-height: 33.33333%;
+    padding: 5px 20px;
+    display: flex;
+    flex-direction:row-reverse
+  }
+
+  &-avatar{
+    max-width: 5%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &>p{
+      color: #fff;
+    }
+  }
+  &-content{
+    position: relative;
+    padding: 5px;
+    margin:0 15px ;
+    min-width: 20%;
+    background-color:#fff;
+    border-radius: 8px;
+    display: flex;
+    &::after{
+      content: '';
+      position: absolute;
+      top: 40%;
+      left: -12px;
+      height: 0;
+      width: 0;
+      border-color: #fff #fff  transparent transparent;
+      border-style: solid solid solid solid;
+      border-width: 5px 8px;
+    }
+
+
+    &-title{
+      font-size: 0.875rem;
+      color: $secondary;
+    }
+    &-txt{
+      align-self: center;
+      padding: 0 5px;
+    }
+  }
+  &-box{
+    display: flex;
+    flex-direction:column;
+  }
+
+  &-content-end{
+    position: relative;
+    padding: 5px;
+    margin:0 15px ;
+    min-width: 20%;
+    background-color:#fff;
+    border-radius: 8px;
+    display: flex;
+    &::after{
+      content: '';
+      position: absolute;
+      top: 40%;
+      right: -12px;
+      height: 0;
+      width: 0;
+      border-color: #fff transparent transparent #fff;
+      border-style: solid solid solid solid;
+      border-width: 5px 8px;
+    }
+  }
+
 }
 
-.recommendation-wall {
-  overflow-x: scroll;
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
 
-.recommendation-wall::-webkit-scrollbar {
-  display: none;
-}
 
-.gallery-top, .gallery-bottom {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.gallery-top {
-  margin-left: 95px;
-  margin-bottom: 20px;
-}
-
-.recommendation-card {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: 30px;
-  min-width: 350px;
-  background-color: #FFFFFF;
-}
-
-.recommendation-card img {
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-.recommend-content {
-  padding-left: 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
 
 .recommend-img {
   display: -webkit-box;
@@ -388,10 +426,6 @@
   margin-right: 8px;
 }
 
-.recommend-text {
-  font-size: 0.875rem;
-  color: #6A33F8;
-}
 
 .transport {
   padding: 30px 0;
