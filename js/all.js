@@ -41,10 +41,10 @@ function init () {
     scrollbar: {
       el: '.swiper-scrollbar'
     },
-    effect: 'slide' // slide的樣式
-    // autoplay: { // 是否要自動撥放
-    //  delay: 1000
-    // }
+    effect: 'slide', // slide的樣式
+    autoplay: { // 是否要自動撥放
+      delay: 2500
+    }
   })
 
   getProductList()

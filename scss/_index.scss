@@ -327,13 +327,13 @@
   }
   &-card{
     max-height: 33.33333%;
-    padding: 5px 20px;
+    padding: 5px 50px;
     display: flex;
 
   }
   &-card-end{
     max-height: 33.33333%;
-    padding: 5px 20px;
+    padding: 5px 50px;
     display: flex;
     flex-direction:row-reverse
   }
@@ -347,12 +347,13 @@
     align-items: center;
     &>p{
       color: #fff;
+      white-space: nowrap;
     }
   }
   &-content{
     position: relative;
     padding: 5px;
-    margin:0 15px ;
+    margin:0 30px ;
     min-width: 20%;
     background-color:#fff;
     border-radius: 8px;
@@ -382,12 +383,18 @@
   &-box{
     display: flex;
     flex-direction:column;
+    img{
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+      object-position: center;
+    }
   }
 
   &-content-end{
     position: relative;
     padding: 5px;
-    margin:0 15px ;
+    margin:0 30px ;
     min-width: 20%;
     background-color:#fff;
     border-radius: 8px;
