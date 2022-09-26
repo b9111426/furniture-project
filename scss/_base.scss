@@ -1,6 +1,9 @@
 body{
   font-family: 'Noto Sans TC',-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
+html{
+  scroll-behavior: smooth;
+}
 .wrap {
   max-width: 1110px;
   margin: 0 auto;
@@ -39,3 +42,5 @@ body{
 .d-inline{
   display:inline;
 }
+
+

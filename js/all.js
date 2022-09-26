@@ -1,3 +1,6 @@
+import { createSwiper } from "./createSwiper.js"
+
+
 const productList = document.querySelector('.productWrap')
 const productSelect = document.querySelector('.productSelect')
 const cartList = document.querySelector('.shoppingCart-tableList')
@@ -16,36 +19,8 @@ let cartData = []
 
 // 預設渲染
 function init () {
-  const swiper = new Swiper('.swiper', {
-    // Optional parameters
-    direction: 'horizontal',
-    loop: true,
-    // autoHeight: true, // 高度隨內容變化
+  createSwiper()
 
-    breakpoints: {
-
-    }, // 斷點設定
-
-    // 分頁按鈕
-    pagination: {
-      el: '.swiper-pagination'
-    },
-
-    // 前後頁按鈕
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-
-    // And if we need scrollbar
-    scrollbar: {
-      el: '.swiper-scrollbar'
-    },
-    effect: 'slide', // slide的樣式
-    autoplay: { // 是否要自動撥放
-      delay: 2500
-    }
-  })
 
   getProductList()
   getCartList()
