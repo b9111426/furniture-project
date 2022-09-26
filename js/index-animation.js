@@ -1,4 +1,3 @@
-
 // menu 切換
 const menuOpenBtn = document.querySelector('.menuToggle')
 const linkBtn = document.querySelectorAll('.topBar-menu a')
