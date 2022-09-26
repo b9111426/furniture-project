@@ -4,8 +4,20 @@
   }
 };
 
+@mixin laptop{
+  @media (max-width: 900px){
+    @content
+  }
+};
+
 @mixin pad{
   @media (max-width: 767px) {
     @content
   }
 };
+
+@mixin phone{
+  @media (max-width: 500px) {
+    @content
+  }
+}

@@ -134,6 +134,40 @@ html {
   }
 }
 
+.animated-bg {
+  background-image: -webkit-gradient(linear, left top, right top, from(#f6f7f85c), color-stop(10%, #edeef1), color-stop(20%, #f6f7f85c), to(#f6f7f85c));
+  background-image: linear-gradient(to right, #f6f7f85c 0%, #edeef1 10%, #f6f7f85c 20%, #f6f7f85c 100%);
+  background-size: 200% 100%;
+  -webkit-animation: bgPos 1s linear infinite;
+          animation: bgPos 1s linear infinite;
+}
+
+.animated-bg-text {
+  border-radius: 50px;
+  display: inline-block;
+  margin: 0;
+  height: 10px;
+  width: 100%;
+}
+
+@-webkit-keyframes bgPos {
+  0% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: -150% -150%;
+  }
+}
+
+@keyframes bgPos {
+  0% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: -150% -150%;
+  }
+}
+
 .topBar {
   background-color: #fff;
   position: absolute;
@@ -815,11 +849,11 @@ html {
   font-weight: bold;
 }
 
-.productDisplay {
+.product-display {
   padding: 30px 15px;
 }
 
-.productSelect {
+.product-select {
   border: 1px solid #B9B9B9;
   color: #797979;
   min-height: 38px;
@@ -829,66 +863,72 @@ html {
   margin-bottom: 30px;
 }
 
-.productWrap {
+.product-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.productCard {
+.product-card {
   position: relative;
   margin-right: 2%;
   width: 23%;
   margin-bottom: 30px;
 }
 
-.productCard img {
+@media (max-width: 900px) {
+  .product-card {
+    width: 48%;
+  }
+}
+
+@media (max-width: 500px) {
+  .product-card {
+    width: 100%;
+  }
+}
+
+.product-image {
   min-height: 300px;
   width: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 
-.productCard a {
+.product-btn {
   display: block;
   background-color: #000000;
   color: #ffffff;
   padding: 10px 0;
+  font-size: 1.25rem;
   text-align: center;
   border: none;
   margin-bottom: 8px;
   text-decoration: none;
 }
 
-.productCard a:hover {
-  background-color: #301E5F;
+.product-btn:hover {
+  background-color: #9f8865;
 }
 
-.productCard a, .productCard h3 {
+.product-title {
   font-size: 1.25rem;
 }
 
-@media (max-width: 900px) {
-  .productCard {
-    width: 48%;
-  }
-}
-
-@media (max-width: 540px) {
-  .productCard {
-    width: 100%;
-  }
-}
-
-.productType {
+.product-type {
   position: absolute;
   top: 13px;
   right: -5px;
   background-color: #000000;
   color: #ffffff;
   padding: 8px 24px;
+}
+
+.product-placeHold {
+  min-height: 350px;
+  width: 100%;
 }
 
 .originPrice {

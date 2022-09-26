@@ -30,7 +30,8 @@
       ],
       "no-unused-var": [
         "off"
-      ]
+      ],
+      "camelcase": "off"
     }
 }
 
