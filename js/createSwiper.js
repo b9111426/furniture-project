@@ -1,4 +1,4 @@
-export const createSwiper = ()=>{
+export const createSwiper = () => {
   const swiper = new Swiper('.swiper', {
     // Optional parameters
     direction: 'horizontal',
@@ -6,7 +6,7 @@ export const createSwiper = ()=>{
 
     breakpoints: {
 
-    }, 
+    },
 
     // 分頁按鈕
     pagination: {

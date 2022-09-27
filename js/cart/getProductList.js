@@ -4,12 +4,12 @@ import config from '../config.js'
 
 const productList = document.querySelector('.product-wrap')
 const productSelect = document.querySelector('.product-select')
-const instance = axios.create({ baseURL: 'https://livejs-api.hexschool.io/api/livejs/v1/customer/'})
+const instance = axios.create({ baseURL: 'https://livejs-api.hexschool.io/api/livejs/v1/customer/' })
 const { api_path } = config
 
-  let productData = []
+let productData = []
 
-export const getProductList  = () => {
+export const getProductList = () => {
   instance.get(`/${api_path}/products`)
     .then(res => {
       productData = res.data.products
@@ -20,7 +20,7 @@ export const getProductList  = () => {
     })
 }
 
-const combineProductHTMLItem = (item)=>{
+const combineProductHTMLItem = (item) => {
   return /* html */`
   <li class="product-card">
   <h4 class="product-type">${item.category}</h4>
@@ -32,27 +32,26 @@ const combineProductHTMLItem = (item)=>{
   </li>
 `
 }
-const renderProduct = () =>{
-  let str = "";
+const renderProduct = () => {
+  let str = ''
   productData.forEach((item) => {
-      str += combineProductHTMLItem(item)
+    str += combineProductHTMLItem(item)
   })
-  productList.innerHTML = str;
+  productList.innerHTML = str
 }
 
- //產品下拉選單
-  productSelect.addEventListener('change', function (e) {
+// 產品下拉選單
+productSelect.addEventListener('change', function (e) {
   const category = e.target.value
-  if (category === "全部") {
-      getProductList();
-      return;
+  if (category === '全部') {
+    getProductList()
+    return
   }
-  let str = "";
+  let str = ''
   productData.forEach(function (item) {
-      if (item.category === category) {
-          str += combineProductHTMLItem(item);
-      }
-      productList.innerHTML = str;
+    if (item.category === category) {
+      str += combineProductHTMLItem(item)
+    }
+    productList.innerHTML = str
   })
 })
-
