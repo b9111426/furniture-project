@@ -4,8 +4,7 @@ import config from '../config.js'
 
 const productList = document.querySelector('.product-wrap')
 const productSelect = document.querySelector('.product-select')
-const instance = axios.create({ baseURL: 'https://livejs-api.hexschool.io/api/livejs/v1/customer/' })
-const { api_path } = config
+const { api_path, instance } = config
 
 let productData = []
 

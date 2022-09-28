@@ -1,10 +1,10 @@
 import { toThousands } from '../libs/util.js'
 import config from '../config.js'
 import { sweetAlertSet } from '../libs/sweetAlertSet.js'
+import cartEvent from './cartEvent.js'
 
-const cartList = document.querySelector('.shoppingCart-tableList')
 const productList = document.querySelector('.product-wrap')
-const discardAllBtn = document.querySelector('.discardAllBtn')
+const cartList = document.querySelector('.shoppingCart-tableList')
 const orderInfoBtn = document.querySelector('.orderInfo-btn')
 const form = document.querySelector('.orderInfo-form')
 const inputs = document.querySelectorAll('input[type=text],input[type=email],input[type=tel]')
@@ -14,8 +14,7 @@ const customerEmail = document.querySelector('#customerEmail')
 const customerAddress = document.querySelector('#customerAddress')
 const tradeWay = document.querySelector('#tradeWay')
 
-const instance = axios.create({ baseURL: 'https://livejs-api.hexschool.io/api/livejs/v1/customer/' })
-const { api_path } = config
+const { api_path ,instance} = config
 
 const data = {
   cartData: [],
@@ -81,29 +80,8 @@ productList.addEventListener('click', function (e) {
   })
 })
 
-// 刪除購物車
-cartList.addEventListener('click', function (e) {
-  e.preventDefault()
-  const cartId = e.target.getAttribute('data-id')
-  if (cartId == null) {
-    return
-  }
-  instance.delete(`/${api_path}/carts/${cartId}`)
-    .then(res => {
-      getCartList()
-    })
-})
+cartEvent.init()
 
-// 刪除全部購物車
-discardAllBtn.addEventListener('click', function (e) {
-  e.preventDefault()
-  instance.delete(`/${api_path}/carts`)
-    .then(res => getCartList())
-    .catch(res => {
-      const info = '購物車已刪除'
-      Swal.fire(sweetAlertSet('info', info))
-    })
-})
 
 orderInfoBtn.addEventListener('click', function (e) {
   e.preventDefault()
@@ -174,7 +152,7 @@ orderInfoBtn.addEventListener('click', function (e) {
   }
 
   // post資料
-  axios.post(`https://livejs-api.hexschool.io/api/livejs/v1/customer/${api_path}/orders`, {
+  instance.post(`/${api_path}/orders`, {
     data: {
       user: {
         name: customerName.value,
@@ -185,7 +163,7 @@ orderInfoBtn.addEventListener('click', function (e) {
       }
     }
   })
-    .then(function (response) {
+    .then(res => {
       alert('訂單建立成功')
       document.querySelector('.orderInfo-form').reset()
       getCartList()
