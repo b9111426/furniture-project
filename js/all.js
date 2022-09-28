@@ -1,11 +1,14 @@
-import { createSwiper } from './createSwiper.js'
+import { createSwiper } from './libs/createSwiper.js'
 import { getProductList } from './cart/getProductList.js'
-import { getCartList } from './cart/getCartList.js'
-
-
+import { getCartList, renderCartList } from './cart/getCartList.js'
+import cartEvent from './cart/cartEvent.js'
 
 document.addEventListener('DOMContentLoaded', function () {
   createSwiper()
   getProductList()
-  getCartList()
+  const cartList = getCartList()
+  cartList.then(res => {
+    renderCartList(res.data)
+    cartEvent.init(res.data.carts)
+  })
 })

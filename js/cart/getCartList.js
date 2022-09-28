@@ -1,9 +1,7 @@
 import { toThousands } from '../libs/util.js'
 import config from '../config.js'
-import { sweetAlertSet } from '../libs/sweetAlertSet.js'
-import cartEvent from './cartEvent.js'
+import { createLottie } from '../libs/createLottie.js'
 
-const productList = document.querySelector('.product-wrap')
 const cartList = document.querySelector('.shoppingCart-tableList')
 const orderInfoBtn = document.querySelector('.orderInfo-btn')
 const form = document.querySelector('.orderInfo-form')
@@ -14,74 +12,49 @@ const customerEmail = document.querySelector('#customerEmail')
 const customerAddress = document.querySelector('#customerAddress')
 const tradeWay = document.querySelector('#tradeWay')
 
-const { api_path ,instance} = config
-
-const data = {
-  cartData: [],
-  numCheck: 1
-}
+const { api_path, instance } = config
 
 export const getCartList = () => {
-  instance.get(`/${api_path}/carts`)
-    .then(res => {
-      document.querySelector('.js-total').textContent = res.data.finalTotal
-      data.cartData = res.data.carts
-      let str = ''
-      if (res.data.carts === 0) {
-        str = `<tr>
-                  <td colspan="5">
-                              <span class="material-icons empty-icon">production_quantity_limits</span>
-                          </td>
-                  </tr>`
-      };
-      data.cartData.forEach(function (item) {
-        str += `<tr>
-          <td>
-              <div class="cardItem-title">
-                  <img src="${item.product.images}" alt="">
-                  <p>${item.product.title}</p>
-              </div>
-          </td>
-          <td>NT$${toThousands(item.product.price)}</td>
-          <td>${item.quantity}</td>
-          <td>NT$${toThousands(item.product.price * item.quantity)}</td>
-          <td class="discardBtn">
-              <a href="#" class="material-icons" data-id="${item.id}">
-                  clear
-              </a>
-          </td>
-      </tr>`
-      })
-      cartList.innerHTML = str
-    })
+  return instance.get(`/${api_path}/carts`)
 }
 
-// 添加產品
-productList.addEventListener('click', function (e) {
-  e.preventDefault()
-  const addCartClass = e.target.getAttribute('class')
-  if (addCartClass !== 'product-btn') {
-    return
+export const renderCartList = (data) => {
+  const cartData = data.carts
+  document.querySelector('.js-total').textContent = data.finalTotal
+  let str = ''
+  if (cartData.length === 0) {
+    str = /* html */`
+    <tr>
+        <td colspan="5">
+                <div id="svgContainer"></div>
+                <p>購物車為空的</p>
+        </td>
+    </tr>`
+    cartList.innerHTML = str
+    const anLottie = createLottie()
+    anLottie.setSpeed(1)
+  } else {
+    cartData.forEach(function (item) {
+      str += `<tr>
+        <td>
+            <div class="cardItem-title">
+                <img src="${item.product.images}" alt="">
+                <p>${item.product.title}</p>
+            </div>
+        </td>
+        <td>NT$${toThousands(item.product.price)}</td>
+        <td>${item.quantity}</td>
+        <td>NT$${toThousands(item.product.price * item.quantity)}</td>
+        <td class="discardBtn">
+            <a href="#" class="material-icons" data-id="${item.id}">
+                clear
+            </a>
+        </td>
+    </tr>`
+    })
+    cartList.innerHTML = str
   }
-  const productId = e.target.getAttribute('data-id')
-  data.cartData.forEach(function (item) {
-    if (item.product.id === productId) {
-      data.numCheck = item.quantity += 1
-    };
-  })
-
-  instance.post(`/${api_path}/carts`, {
-    data: {
-      productId: productId,
-      quantity: data.numCheck
-    }
-  }).then(res => {
-    getCartList()
-  })
-})
-
-cartEvent.init()
-
+}
 
 orderInfoBtn.addEventListener('click', function (e) {
   e.preventDefault()
