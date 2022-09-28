@@ -330,11 +330,11 @@
           </li>
         </ul>
     </section>
-    <section class="shoppingCart">
+    <section class="shopping-cart">
         <h3 class="section-title">我的購物車</h3>
         <div class="overflowWrap">
-            <table class="shoppingCart-table">
-                <thead>
+            <table class="shopping-table">
+                <thead class="shopping-thead">
                     <tr>
                         <th width="40%">品項</th>
                         <th width="15%">單價</th>
@@ -349,14 +349,15 @@
                 <tfoot>
                     <tr>
                         <td>
-                            <a href="#" class="discardAllBtn">刪除所有品項</a>
+                            <a href="javascript:;" class="discardAllBtn">刪除所有品項</a>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <p>總金額</p>
+                        <td colspan="2">
+                          <p>結帳總金額:</p>
                         </td>
-                        <td><span class="js-total">計算中</span></td>
+                        <td colspan="2">
+                          <span class="js-total">
+                          <img class='loading' src="./asset/load.gif" alt="">計算中</span>
+                        </td>
                     </tr>
                 </tfoot>
             </table>

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const cartList = getCartList()
   cartList.then(res => {
     renderCartList(res.data)
-    cartEvent.init(res.data.carts)
+    cartEvent.getData(res.data.carts)
+    cartEvent.init()
   })
 })

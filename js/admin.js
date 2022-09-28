@@ -24,7 +24,7 @@ function getOrdList () {
         })
         // 判斷訂單處理狀態
         let orderStatus = ''
-        if (item.paid == true) {
+        if (item.paid === true) {
           orderStatus = '已處裡'
         } else {
           orderStatus = '未處裡'

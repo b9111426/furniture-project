@@ -20,7 +20,7 @@ export const getCartList = () => {
 
 export const renderCartList = (data) => {
   const cartData = data.carts
-  document.querySelector('.js-total').textContent = data.finalTotal
+  document.querySelector('.js-total').textContent = `NT$ ${data.finalTotal}`
   let str = ''
   if (cartData.length === 0) {
     str = /* html */`
@@ -35,7 +35,8 @@ export const renderCartList = (data) => {
     anLottie.setSpeed(1)
   } else {
     cartData.forEach(function (item) {
-      str += `<tr>
+      str += /* html */`
+      <tr>
         <td>
             <div class="cardItem-title">
                 <img src="${item.product.images}" alt="">
@@ -46,7 +47,7 @@ export const renderCartList = (data) => {
         <td>${item.quantity}</td>
         <td>NT$${toThousands(item.product.price * item.quantity)}</td>
         <td class="discardBtn">
-            <a href="#" class="material-icons" data-id="${item.id}">
+            <a href="javascript:;" class="material-icons" data-id="${item.id}">
                 clear
             </a>
         </td>
