@@ -1,6 +1,6 @@
 import { toThousands } from '../libs/util.js'
 import config from '../config.js'
-import { createLottie } from '../libs/createLottie.js'
+import { emptyCartLottie } from '../libs/createLottie.js'
 
 const cartList = document.querySelector('.shopping-tableList')
 
@@ -23,7 +23,7 @@ export const renderCartList = (data) => {
         </td>
     </tr>`
     cartList.innerHTML = str
-    const anLottie = createLottie()
+    const anLottie = emptyCartLottie()
     anLottie.setSpeed(1)
   } else {
     cartData.forEach(function (item) {

@@ -1,5 +1,5 @@
 // const svgContainer = document.querySelector('#svgContainer')
-export const createLottie = () => {
+export const emptyCartLottie = () => {
   return lottie.loadAnimation({
     container: svgContainer,
     animType: 'svg',
