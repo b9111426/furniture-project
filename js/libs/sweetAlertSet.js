@@ -3,8 +3,6 @@ export const sweetAlertSet = (type, info) => {
     icon: type,
     iconColor: 'red',
     title: info,
-    showCloseButton: true,
-    popup: 'swal2-show',
-    backdrop: 'swal2-backdrop-show'
+    showCloseButton: true
   }
 }

@@ -67,6 +67,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  background-color: #e0f1f1;
 }
 
 .wrap {
@@ -95,15 +96,15 @@ html {
 }
 
 .txt-white {
-  color: #fff;
+  color: #e0f1f1;
 }
 
 .txt-dark {
-  color: #2c2c2c;
+  color: #1d3342;
 }
 
 .bg-dark {
-  background-color: #2c2c2c;
+  background-color: #1d3342;
 }
 
 .d-inline {
@@ -124,21 +125,21 @@ html {
 }
 
 .swiper-button-next:after {
-  color: #9f8865;
+  color: #aed265;
   background-color: rgba(142, 142, 142, 0.5);
   border-radius: 10px 0  0 10px;
   padding: 10px;
 }
 
 .swiper-button-prev:after {
-  color: #9f8865;
+  color: #aed265;
   background-color: rgba(142, 142, 142, 0.5);
   border-radius: 0 10px 10px 0;
   padding: 10px;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #9f8865;
+  background-color: #aed265;
 }
 
 @media (max-width: 767px) {
@@ -148,8 +149,8 @@ html {
 }
 
 .animated-bg {
-  background-image: -webkit-gradient(linear, left top, right top, from(#f6f7f85c), color-stop(10%, #edeef1), color-stop(20%, #f6f7f85c), to(#f6f7f85c));
-  background-image: linear-gradient(to right, #f6f7f85c 0%, #edeef1 10%, #f6f7f85c 20%, #f6f7f85c 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(#e3e3e3), color-stop(10%, #ededed), color-stop(20%, #e3e3e3), to(#e3e3e3));
+  background-image: linear-gradient(to right, #e3e3e3 0%, #ededed 10%, #e3e3e3 20%, #e3e3e3 100%);
   background-size: 200% 100%;
   -webkit-animation: bgPos 1s linear infinite;
           animation: bgPos 1s linear infinite;
@@ -182,7 +183,7 @@ html {
 }
 
 .topBar {
-  background-color: #fff;
+  background-color: #1d3342;
   position: absolute;
   width: 100%;
   top: 0;
@@ -205,18 +206,18 @@ html {
 }
 
 .topBar .admin > a {
-  color: #aaa;
+  color: #5188b1;
 }
 
 .topBar a {
   display: block;
   text-decoration: none;
-  color: #000000;
+  color: #e0f1f1;
   font-size: 1.25rem;
 }
 
 .topBar a:hover {
-  color: #9f8865;
+  color: #aed265;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -237,7 +238,7 @@ html {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  background-color: #fff;
+  background-color: #1d3342;
 }
 
 @media (max-width: 767px) {
@@ -248,7 +249,7 @@ html {
     right: 0;
     width: 100%;
     z-index: 10;
-    background-color: #2c2c2c;
+    background-color: #1d3342;
     max-height: 0;
     overflow: hidden;
     -webkit-transition: all .2s;
@@ -273,7 +274,7 @@ html {
   right: 50%;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
-  color: #9f8865;
+  color: #5188b1;
   -webkit-transition: all .5s;
   transition: all .5s;
 }
@@ -285,7 +286,7 @@ html {
   left: 50%;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
-  color: #9f8865;
+  color: #5188b1;
   -webkit-transition: all .5s;
   transition: all .5s;
 }
@@ -295,7 +296,7 @@ html {
     text-align: center;
     padding: 15px;
     font-size: 1rem;
-    color: #fff;
+    color: #e0f1f1;
   }
 }
 
@@ -311,7 +312,7 @@ html {
   right: 10%;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
-  color: #9f8865;
+  color: #aed265;
 }
 
 .topBar-menu a:hover::before {
@@ -321,13 +322,13 @@ html {
   left: 10%;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
-  color: #9f8865;
+  color: #aed265;
 }
 
 @media (max-width: 767px) {
   .topBar-menu a:hover {
-    background-color: #9f8865;
-    color: #fff;
+    background-color: #5188b1;
+    color: #e0f1f1;
   }
 }
 
@@ -343,7 +344,7 @@ html {
 }
 
 .menuToggle:hover {
-  color: #9f8865;
+  color: #5188b1;
 }
 
 @media (max-width: 767px) {
@@ -376,7 +377,7 @@ html {
 .banner-deco {
   height: 2000px;
   width: 1500px;
-  background-color: #2c2c2c;
+  background-color: #aed265;
   opacity: .7;
   -webkit-transform: rotate(30deg);
           transform: rotate(30deg);
@@ -386,7 +387,7 @@ html {
 
 .banner-text {
   position: absolute;
-  color: #fff;
+  color: #5188b1;
   font-size: 5rem;
   letter-spacing: .5rem;
   left: 15%;
@@ -406,14 +407,14 @@ html {
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  background-color: #9f8865;
+  background-color: #5188b1;
 }
 
 .banner-describe {
   position: absolute;
   width: 200%;
   letter-spacing: .5rem;
-  color: #fff;
+  color: #e0f1f1;
   top: 50%;
   left: 50%;
 }
@@ -425,7 +426,7 @@ html {
   bottom: 0;
   margin: auto;
   text-align: center;
-  color: #9f8865;
+  color: #5188b1;
   font-size: 100px;
 }
 
@@ -450,7 +451,7 @@ html {
   position: relative;
   max-width: 33%;
   min-height: 200px;
-  background-color: #2c2c2c;
+  background-color: #1d3342;
   padding: .5rem;
   margin: 0 .2rem;
 }
@@ -470,7 +471,7 @@ html {
 }
 
 .bedAdvantage-text {
-  color: #fff;
+  color: #e0f1f1;
   text-align: center;
   font-size: 1.25rem;
   padding-top: 1rem;
@@ -518,7 +519,7 @@ html {
 .feature-right-content {
   max-width: 50%;
   max-height: 50%;
-  background-color: #fff;
+  background-color: #e0f1f1;
   padding: 50px;
   text-align: center;
 }
@@ -527,8 +528,12 @@ html {
   text-align: center;
   font-size: 2rem;
   padding: .5rem 2rem;
-  border-bottom: #2c2c2c solid 1px;
+  border-bottom: #1d3342 solid 1px;
   margin-bottom: .5rem;
+}
+
+.feature-right-title h3 {
+  color: #1d3342;
 }
 
 .feature-right-list {
@@ -544,10 +549,11 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-left: 1px solid #2c2c2c;
+  border-left: 1px solid #1d3342;
 }
 
 .feature-right-list li {
+  color: #1d3342;
   text-align: left;
   font-size: 1.5rem;
   margin-top: .5rem;
@@ -591,12 +597,12 @@ html {
 }
 
 .recommendation {
-  background-color: #2c2c2c;
+  background-color: #1d3342;
   padding: 60px 0;
 }
 
 .recommendation h3 {
-  color: #fff;
+  color: #e0f1f1;
 }
 
 @media (max-width: 767px) {
@@ -649,7 +655,7 @@ html {
 }
 
 .recommendation-avatar > p {
-  color: #fff;
+  color: #e0f1f1;
   white-space: nowrap;
 }
 
@@ -682,14 +688,14 @@ html {
   left: -12px;
   height: 0;
   width: 0;
-  border-color: #fff #fff  transparent transparent;
+  border-color: #fff #fff transparent transparent;
   border-style: solid solid solid solid;
   border-width: 5px 8px;
 }
 
 .recommendation-content-title {
   font-size: 0.875rem;
-  color: #6A33FF;
+  color: #1d3342;
 }
 
 @media (max-width: 767px) {
@@ -826,13 +832,14 @@ html {
   width: 69px;
   -webkit-transform: translate(97%, -50%);
           transform: translate(97%, -50%);
-  border: 3px solid #000;
+  border: 3px solid #1d3342;
 }
 
 .transport-card .cardImg {
+  color: #1d3342;
   width: 115px;
   height: 115px;
-  border: 4px solid #000;
+  border: 4px solid #1d3342;
   border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -867,8 +874,8 @@ html {
 }
 
 .product-select {
-  border: 1px solid #B9B9B9;
-  color: #797979;
+  border: 1px solid #f8f8f8;
+  color: #ccc;
   min-height: 38px;
   min-width: 255px;
   text-indent: 10px;
@@ -911,8 +918,8 @@ html {
 
 .product-btn {
   display: block;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #1d3342;
+  color: #e0f1f1;
   padding: 10px 0;
   font-size: 1.25rem;
   text-align: center;
@@ -922,7 +929,7 @@ html {
 }
 
 .product-btn:hover {
-  background-color: #9f8865;
+  background-color: #aed265;
 }
 
 .product-title {
@@ -933,8 +940,8 @@ html {
   position: absolute;
   top: 13px;
   right: -5px;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #1d3342;
+  color: #e0f1f1;
   padding: 8px 24px;
 }
 
@@ -953,8 +960,12 @@ html {
 }
 
 .shopping-cart {
-  background-color: #F8F8F8;
+  background-color: #1d3342;
   padding: 60px 0;
+}
+
+.shopping-title {
+  color: #e0f1f1;
 }
 
 .shopping-table {
@@ -971,17 +982,25 @@ html {
   }
 }
 
+.shopping-tableList {
+  background-color: #fff;
+}
+
 .shopping-table th, .shopping-table td {
   padding: 15px;
   vertical-align: middle;
 }
 
 .shopping-table tr {
-  border-bottom: 1px solid #cfcfcf;
+  border-bottom: 1px solid #ccc;
 }
 
 .shopping-thead {
-  background-color: #ddd;
+  background-color: #ccc;
+}
+
+.shopping-tfoot {
+  background-color: #fff;
 }
 
 .cardItem-title {
@@ -1007,7 +1026,7 @@ html {
   display: inline-block;
   padding: 10px;
   font-size: 2rem;
-  color: #2c2c2c;
+  color: #1d3342;
 }
 
 .discardBtn a:hover {
@@ -1020,15 +1039,15 @@ html {
   display: inline-block;
   text-decoration: none;
   padding: 5px 15px;
-  color: #2c2c2c;
-  border: 1.3px solid #2c2c2c;
+  color: #1d3342;
+  border: 1.3px solid #1d3342;
   border-radius: 5px;
   font-size: 1.25rem;
 }
 
 .discardAllBtn:hover {
-  background-color: #2c2c2c;
-  color: #fff;
+  background-color: #1d3342;
+  color: #e0f1f1;
 }
 
 .orderInfo {
@@ -1070,7 +1089,7 @@ html {
 .orderInfo-input {
   width: 100%;
   min-height: 38px;
-  border: 1px solid #CED4DA;
+  border: 1px solid #f8f8f8;
   text-indent: 1rem;
   margin-right: 10px;
 }
@@ -1079,8 +1098,8 @@ html {
   display: block;
   min-width: 255px;
   min-height: 48px;
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: #1d3342;
+  color: #e0f1f1;
   border: 0;
   cursor: pointer;
   font-size: 1.25rem;
@@ -1089,99 +1108,19 @@ html {
 }
 
 .orderInfo-btn:hover {
-  background-color: #9f8865;
+  background-color: #5188b1;
 }
 
-.orderInfo-message {
-  position: absolute;
-  white-space: nowrap;
-  left: 103%;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  color: #9f4a4a;
+.shopping-tableList {
+  text-align: center;
+}
+
+.errMessages {
+  color: #e6484d;
 }
 
 @media (max-width: 767px) {
-  .orderInfo-message {
-    position: static;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-.delSingleOrder-Btn {
-  display: block;
-  background-color: #C44021;
-  color: #fff;
-  border: 0;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.delSingleOrder-Btn:hover {
-  opacity: 0.8;
-}
-
-.orderStatus {
-  position: relative;
-}
-
-.orderStatus a {
-  position: absolute;
-  padding: 10px;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  display: block;
-  text-decoration: none;
-  color: #FFFFFF;
-}
-
-.orderStatus-unDone {
-  background-color: #747474;
-}
-
-.orderStatus-unDone:hover {
-  background-color: #000000;
-}
-
-.orderStatus-done {
-  background-color: #000000;
-}
-
-.orderStatus-done:hover {
-  background-color: #747474;
-}
-
-.orderTableWrap {
-  font-size: 4px;
-  overflow-x: scroll;
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.orderTableWrap::-webkit-scrollbar {
-  display: none;
-}
-
-.shoppingCart-tableList {
-  text-align: center;
-}
-
-.shoppingCart-table th {
-  text-align: center;
-}
-
-.messages {
-  color: red;
-}
-
-@media (min-width: 768px) {
-  .messages {
+  .errMessages {
     position: absolute;
     -webkit-transform: translate(0, -100%);
             transform: translate(0, -100%);
@@ -1191,6 +1130,6 @@ html {
 }
 
 .formWarning {
-  border-color: red !important;
+  border-color: #e6484d;
 }
 /*# sourceMappingURL=all.css.map */

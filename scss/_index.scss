@@ -1,7 +1,7 @@
 
 
 .topBar{
-  background-color: #fff;
+  background-color: $dark;
   position: absolute;
   width: 100%;
   top: 0;
@@ -16,17 +16,17 @@
   }
 
   & .admin>a{
-    color: #aaa;
+    color: $primary;
   }
 
   & a{
     display: block;
     text-decoration: none;
-    color: #000000;
+    color: $light;
     font-size: 1.25rem;
 
     &:hover{
-      color: $primary;
+      color: $secondary;
       transform: scale(1.05);
     }
   }
@@ -41,7 +41,7 @@
   &-menu{
     display: flex;
     flex-wrap: wrap;
-    background-color: #fff;
+    background-color: $dark;
 
     @include pad(){
       position: absolute;
@@ -86,7 +86,7 @@
       text-align: center;
       padding: 15px;
       font-size: 1rem;
-      color: #fff;
+      color: $light;
     }
 
     &:hover{
@@ -97,7 +97,7 @@
         top: 50%;
         right: 10%;
         transform: translate(0,-50%);
-        color: $primary;
+        color: $secondary;
       }
       &::before{
         content: '[';
@@ -105,11 +105,11 @@
         top: 50%;
         left: 10%;
         transform: translate(0,-50%);
-        color: $primary;
+        color: $secondary;
       }
       @include pad(){
         background-color: $primary;
-        color: #fff;
+        color: $light;
       }
     }
   }
@@ -156,14 +156,14 @@
   &-deco{
     height: 2000px;
     width: 1500px;
-    background-color:$dark;
+    background-color:$secondary;
     opacity: .7;
     transform: rotate(30deg);
     transform-origin: center center;
   }
   &-text{
     position: absolute;
-    color: #fff;
+    color: $primary;
     font-size: 5rem;
     letter-spacing: .5rem;
     left: 15%;
@@ -187,7 +187,7 @@
     position: absolute;
     width: 200%;
     letter-spacing: .5rem;
-    color: #fff;
+    color: $light;
     top: 50%;
     left: 50%;
   }
@@ -231,7 +231,7 @@
     object-fit: cover;
   }
   &-text{
-    color: #fff;
+    color: $light;
     text-align: center;
     font-size: 1.25rem;
     padding-top:1rem;
@@ -254,7 +254,7 @@
     width: 50%;
     height: 50vw;
     float: left;
-    background-color: #ccc;
+    background-color:$gray;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -266,7 +266,7 @@
     &-content{
       max-width: 50%;
       max-height: 50%;
-      background-color: #fff;
+      background-color: $light;
       padding: 50px;
       text-align: center;
     }
@@ -276,6 +276,9 @@
       padding: .5rem 2rem;
       border-bottom: $dark solid 1px;
       margin-bottom: .5rem;
+      h3{
+        color: $dark;
+      }
     }
     &-list{
       max-width: 50%;
@@ -286,6 +289,7 @@
       border-left: 1px solid $dark;
     }
     &-list li{
+      color: $dark;
       text-align: left;
       font-size: 1.5rem;
       margin-top: .5rem;
@@ -327,7 +331,7 @@
   padding: 60px 0;
 
   & h3{
-    color: #fff;
+    color: $light;
   }
 
   @include pad(){
@@ -356,7 +360,7 @@
     align-items: center;
 
     &>p{
-      color: #fff;
+      color: $light;
       white-space: nowrap;
     }
   }
@@ -365,7 +369,7 @@
     padding: 5px;
     margin:0 30px;
     min-width: 20%;
-    background-color:#fff;
+    background-color:$white;
     border-radius: 8px;
     display: flex;
     @include pad(){
@@ -379,7 +383,7 @@
       left: -12px;
       height: 0;
       width: 0;
-      border-color: #fff #fff  transparent transparent;
+      border-color: $white $white transparent transparent;
       border-style: solid solid solid solid;
       border-width: 5px 8px;
     }
@@ -387,7 +391,7 @@
 
     &-title{
       font-size: 0.875rem;
-      color: $secondary;
+      color: $dark;
       @include pad(){
         padding: 0 10px;
         align-self: center;
@@ -425,7 +429,7 @@
     padding: 5px;
     margin:0 30px ;
     min-width: 20%;
-    background-color:#fff;
+    background-color:$white;
     border-radius: 8px;
     display: flex;
     @include pad(){
@@ -439,7 +443,7 @@
       right: -12px;
       height: 0;
       width: 0;
-      border-color: #fff transparent transparent #fff;
+      border-color: $white transparent transparent $white;
       border-style: solid solid solid solid;
       border-width: 5px 8px;
     }
@@ -471,14 +475,15 @@
       right: 0;
       width: 69px;
       transform: translate(97%,-50%);
-      border: 3px solid #000;
+      border: 3px solid $dark;
     }
   }
 
   &-card .cardImg{
+    color: $dark;
     width: 115px;
     height: 115px;
-    border: 4px solid #000;
+    border: 4px solid $dark;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -505,8 +510,8 @@
     padding: 30px 15px;
   }
   &-select{
-    border: 1px solid #B9B9B9;
-    color: #797979;
+    border: 1px solid $bright-gray;
+    color: $gray;
     min-height: 38px;
     min-width: 255px;
     text-indent: 10px;
@@ -535,8 +540,8 @@
   }
   &-btn{
     display: block;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: $dark;
+    color: $light;
     padding: 10px 0;
     font-size: 1.25rem;
     text-align: center;
@@ -544,7 +549,7 @@
     margin-bottom: 8px;
     text-decoration: none;
     &:hover{
-      background-color:$primary;
+      background-color:$secondary;
     }
   }
   &-title{
@@ -554,8 +559,8 @@
     position: absolute;
     top: 13px;
     right: -5px;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: $dark;
+    color: $light;
     padding: 8px 24px;
   }
   &-placeHold{
@@ -566,7 +571,7 @@
 
 .originPrice {
   font-size: 1.25rem;
-  color: #ccc;
+  color: $gray;
 }
 .nowPrice {
   font-size: 1.75rem;
@@ -574,8 +579,11 @@
 
 .shopping{
   &-cart{
-    background-color: #F8F8F8;
+    background-color: $dark;
     padding: 60px 0;
+  }
+  &-title{
+    color: $light;
   }
   &-table{
     margin: 0 auto;
@@ -587,16 +595,21 @@
       width: 700px;
     }
   }
-
+  &-tableList{
+    background-color:$white;
+  }
   &-table th, &-table td {
     padding: 15px;
     vertical-align: middle;
   }
   &-table tr {
-    border-bottom: 1px solid #cfcfcf;
+    border-bottom: 1px solid $gray;
   }
   &-thead{
-    background-color: #ddd;
+    background-color: $gray;
+  }
+  &-tfoot{
+    background-color: $white;
   }
 }
 
@@ -609,7 +622,6 @@
     max-width: 80px;
   }
 }
-
 
 .discardBtn {
   text-align: right;
@@ -636,7 +648,7 @@
   font-size: 1.25rem;
   &:hover{
     background-color: $dark;
-    color: #fff;
+    color: $light;
   }
 }
 
@@ -649,7 +661,7 @@
   &-form{
     margin: 0 auto;
     padding: 30px 15px;
-    background-color:#ccc;
+    background-color: $gray;
 
   }
   &-formGroup{
@@ -669,7 +681,7 @@
   &-input{
     width: 100%;
     min-height: 38px;
-    border: 1px solid #CED4DA;
+    border: 1px solid $bright-gray;
     text-indent: 1rem;
     margin-right: 10px;
   }
@@ -677,8 +689,8 @@
     display: block;
     min-width: 255px;
     min-height: 48px;
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: $dark;
+    color: $light;
     border: 0;
     cursor: pointer;
     font-size: 1.25rem;
@@ -690,110 +702,21 @@
   }
 }
 
-.orderInfo-message {
-  position: absolute;
-  white-space: nowrap;
-  left: 103%;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  color: #9f4a4a;
-}
 
-@media (max-width: 767px) {
-  .orderInfo-message {
-      position: static;
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-  }
-}
-
-
-
-
-
-
-
-
-
-
-.delSingleOrder-Btn {
-  display: block;
-  background-color: #C44021;
-  color: #fff;
-  border: 0;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.delSingleOrder-Btn:hover {
-  opacity: 0.8;
-}
-
-.orderStatus {
-  position: relative;
-}
-
-.orderStatus a {
-  position: absolute;
-  padding: 10px;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  display: block;
-  text-decoration: none;
-  color: #FFFFFF;
-}
-
-.orderStatus-unDone {
-  background-color: #747474;
-}
-
-.orderStatus-unDone:hover {
-  background-color: #000000;
-}
-
-.orderStatus-done {
-  background-color: #000000;
-}
-
-.orderStatus-done:hover {
-  background-color: #747474;
-}
-
-.orderTableWrap {
-  font-size: 4px;
-  overflow-x: scroll;
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.orderTableWrap::-webkit-scrollbar {
-  display: none;
-}
-
-.shoppingCart-tableList{
+.shopping-tableList{
   text-align: center
 }
-.shoppingCart-table th{
-  text-align: center
-}
-.messages {
-  color: red;
-  
-}
-@media(min-width: 768px){
-  .messages {
-      position: absolute;
-      transform:translate(0,-100%);
-      left: 102%;
-      white-space: nowrap;
+
+.errMessages {
+  color: $danger;
+  @include pad(){
+    position: absolute;
+    transform:translate(0,-100%);
+    left: 102%;
+    white-space: nowrap;
   }
 }
 
 .formWarning{
-  border-color: red!important;
+  border-color: $danger;
 }

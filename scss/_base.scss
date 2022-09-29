@@ -3,6 +3,7 @@ body{
 }
 html{
   scroll-behavior: smooth;
+  background-color: $light;
 }
 .wrap {
   max-width: 1110px;
@@ -30,7 +31,7 @@ html{
 }
 
 .txt-white{
-  color:#fff
+  color:$light;
 }
 .txt-dark{
   color: $dark;

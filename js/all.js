@@ -6,8 +6,7 @@ import cartEvent from './cart/cartEvent.js'
 document.addEventListener('DOMContentLoaded', function () {
   createSwiper()
   getProductList()
-  const cartList = getCartList()
-  cartList.then(res => {
+  getCartList().then(res => {
     renderCartList(res.data)
     cartEvent.getData(res.data.carts)
     cartEvent.init()
