@@ -125,7 +125,8 @@ export default {
         }
       })
         .then(res => {
-          alert('訂單建立成功')
+          const info = '訂單建立成功'
+          Swal.fire(sweetAlertSet('success', info))
           document.querySelector('.orderInfo-form').reset()
           eventObj.getData(res.data.carts)
           getCartList().then(res => renderCartList(res.data))
