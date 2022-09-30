@@ -1,3 +1,6 @@
+import config from './asset/config.js'
+const { api_path, token, adminInstance } = config
+
 let orderData = []
 const orderList = document.querySelector('.js-orderList')
 function init () {
@@ -5,21 +8,21 @@ function init () {
 };
 init()
 function getOrdList () {
-  axios.get(`https://livejs-api.hexschool.io/api/livejs/v1/admin/${api_path}/orders`, {
+  adminInstance.get(`/${api_path}/orders`, {
     headers: {
       Authorization: token
     }
   })
-    .then(function (response) {
-      orderData = response.data.orders
+    .then(res => {
+      orderData = res.data.orders
       let str = ''
-      orderData.forEach(function (item) {
+      orderData.forEach(item => {
         // 組時間字串
         const timeStemp = new Date(item.createdAt * 1000)
         const orderTime = `${timeStemp.getFullYear()}/${timeStemp.getMonth() + 1}/${timeStemp.getDate()}`
         // 組訂單字串
         let productStr = ''
-        item.products.forEach(function (productItem) {
+        item.products.forEach(productItem => {
           if (productItem) { productStr += `<p>${productItem.title}x${productItem.quantity}</p>` }
         })
         // 判斷訂單處理狀態
@@ -30,7 +33,8 @@ function getOrdList () {
           orderStatus = '未處裡'
         }
         // 組產品字串
-        str += `<tr>
+        str += /* html */`
+          <tr>
             <td class="orderNum">${item.id}</td>
             <td>
               <p>${item.user.name}</p>
@@ -48,7 +52,7 @@ function getOrdList () {
             <td>
               <input type="button" class="delSingleOrder-Btn js-orderDelete" data-id="${item.id}" value="刪除">
             </td>
-            </tr>`
+          </tr>`
       })
 
       orderList.innerHTML = str
@@ -108,11 +112,11 @@ orderList.addEventListener('click', function (e) {
   e.preventDefault()
   const tagetClass = e.target.getAttribute('class')
   const id = e.target.getAttribute('data-id')
-  if (tagetClass == 'delSingleOrder-Btn js-orderDelete') {
+  if (tagetClass === 'delSingleOrder-Btn js-orderDelete') {
     deletOrderItem(id)
     return
   }
-  if (tagetClass == 'orderStatus') {
+  if (tagetClass === 'orderStatus') {
     const status = e.target.getAttribute('data-status')
     changeOrderStatus(status, id)
   }

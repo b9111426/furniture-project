@@ -1,7 +1,8 @@
-import config from '../config.js'
+import config from '../asset/config.js'
 import { sweetAlertSet } from '../libs/sweetAlertSet.js'
 import { getCartList, renderCartList } from './getCartList.js'
-import { constraints, orderInputStatus } from './validate.js'
+import { constraints } from './validate.js'
+import { orderInputStatus } from './orderInputStatus.js'
 
 const { api_path, instance } = config
 

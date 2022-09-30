@@ -1,5 +1,5 @@
 import { toThousands } from '../libs/util.js'
-import config from '../config.js'
+import config from '../asset/config.js'
 import { emptyCartLottie } from '../libs/createLottie.js'
 
 const cartList = document.querySelector('.shopping-tableList')

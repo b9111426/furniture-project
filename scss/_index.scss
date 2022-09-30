@@ -548,6 +548,7 @@
     border: none;
     margin-bottom: 8px;
     text-decoration: none;
+    transition: .1s all ease-in-out;
     &:hover{
       background-color:$secondary;
     }
@@ -559,7 +560,7 @@
     position: absolute;
     top: 13px;
     right: -5px;
-    background-color: $dark;
+    background-color: $primary;
     color: $light;
     padding: 8px 24px;
   }
@@ -611,6 +612,9 @@
   &-tfoot{
     background-color: $white;
   }
+  &-loading{
+    padding: 40px 0;
+  }
 }
 
 
@@ -646,9 +650,11 @@
   border: 1.3px solid $dark;
   border-radius: 5px;
   font-size: 1.25rem;
+  transition: .1s all ease-in-out;
   &:hover{
-    background-color: $dark;
-    color: $light;
+    background-color: $danger;
+    border: 1.3px solid $danger;
+    color: $white;
   }
 }
 
@@ -666,14 +672,15 @@
   }
   &-formGroup{
     max-width: 365px;
-    margin: 0 auto 15px;
+    margin: 0 auto 1.5rem;
+
     @include pad(){
       max-width:100%;
     }
   }
   &-label{
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
   }
   &-inputWrap{
     position: relative;
@@ -696,8 +703,10 @@
     font-size: 1.25rem;
     margin: 50px auto 0;
     border-radius: 5px;
+    transition: .1s all ease-in-out;
     &:hover{
-      background-color:$primary;
+      background-color:$secondary;
+      color: $white;
     }
   }
 }
@@ -708,11 +717,9 @@
 }
 
 .errMessages {
+  position: absolute;
   color: $danger;
   @include pad(){
-    position: absolute;
-    transform:translate(0,-100%);
-    left: 102%;
     white-space: nowrap;
   }
 }

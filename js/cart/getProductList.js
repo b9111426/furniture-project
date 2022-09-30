@@ -1,6 +1,6 @@
 
 import { toThousands } from '../libs/util.js'
-import config from '../config.js'
+import config from '../asset/config.js'
 
 const productList = document.querySelector('.product-wrap')
 const productSelect = document.querySelector('.product-select')
