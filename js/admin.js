@@ -3,6 +3,8 @@ const { api_path, token, adminInstance } = config
 
 let orderData = []
 const orderList = document.querySelector('.js-orderList')
+const checkbox = document.querySelectorAll('input[type=checkbox]')
+console.log(checkbox)
 function init () {
   getOrdList()
 };
@@ -14,24 +16,19 @@ function getOrdList () {
     }
   })
     .then(res => {
+      console.log(res.data.orders)
       orderData = res.data.orders
       let str = ''
       orderData.forEach(item => {
         // 組時間字串
-        const timeStemp = new Date(item.createdAt * 1000)
-        const orderTime = `${timeStemp.getFullYear()}/${timeStemp.getMonth() + 1}/${timeStemp.getDate()}`
+        const timeStamp = new Date(item.createdAt * 1000)
+        const orderTime = `${timeStamp.getFullYear()}/${timeStamp.getMonth() + 1}/${timeStamp.getDate()}`
         // 組訂單字串
         let productStr = ''
         item.products.forEach(productItem => {
           if (productItem) { productStr += `<p>${productItem.title}x${productItem.quantity}</p>` }
         })
-        // 判斷訂單處理狀態
-        let orderStatus = ''
-        if (item.paid === true) {
-          orderStatus = '已處裡'
-        } else {
-          orderStatus = '未處裡'
-        }
+
         // 組產品字串
         str += /* html */`
           <tr>
@@ -46,8 +43,15 @@ function getOrdList () {
                 ${productStr}
             </td>
             <td>${orderTime}</td>
-            <td  js-orderStaus">
-              <a href="#" data-status="${item.paid}" class="orderStatus" data-id="${item.id}" >${orderStatus}</a>
+            <td >
+              <div class="orderPage-toggleBtn">
+                <img class='loading' src="./asset/load.gif" alt="">
+                <input type="checkbox" class="orderPage-checkbox" ${item.paid ? 'checked' : ''}>
+                <span class="toggle-switch" data-status="${item.paid}" data-id="${item.id}">
+                    <span class="undo">未處理</span>
+                    <span class="done">已處理</span>
+                </span>
+              </div>
             </td>
             <td>
               <input type="button" class="delSingleOrder-Btn js-orderDelete" data-id="${item.id}" value="刪除">
@@ -108,21 +112,22 @@ function renderC3 () {
   })
 }
 
-orderList.addEventListener('click', function (e) {
+orderList.addEventListener('click', (e) => {
   e.preventDefault()
-  const tagetClass = e.target.getAttribute('class')
+  const targetClass = e.target.getAttribute('class')
   const id = e.target.getAttribute('data-id')
-  if (tagetClass === 'delSingleOrder-Btn js-orderDelete') {
-    deletOrderItem(id)
+  if (targetClass === 'delSingleOrder-Btn js-orderDelete') {
+    // deleteOrderItem(id)
     return
   }
-  if (tagetClass === 'orderStatus') {
+  if (targetClass === 'toggle-switch') {
     const status = e.target.getAttribute('data-status')
-    changeOrderStatus(status, id)
+    const checkBox = e.target.parentNode.querySelector('.orderPage-checkbox')
+    changeOrderStatus(status, id, checkBox)
   }
 })
 
-function changeOrderStatus (status, id) {
+function changeOrderStatus (status, id, checkBox) {
   let newStatus
   if (status === 'true') {
     newStatus = false
@@ -140,10 +145,11 @@ function changeOrderStatus (status, id) {
     }
   })
     .then(function (response) {
-      getOrdList()
+      checkBox.checked = !checkBox.checked
     })
 }
-function deletOrderItem (id) {
+
+function deleteOrderItem (id) {
   axios.delete(`https://livejs-api.hexschool.io/api/livejs/v1/admin/${api_path}/orders/${id}`, {
     headers: {
       Authorization: token

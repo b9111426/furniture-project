@@ -21,6 +21,7 @@
     padding: 10px;
     text-align: left;
     border: 1px solid $black;
+    vertical-align: middle;
   }
   &-tbody{
     background-color: $white;
@@ -30,6 +31,15 @@
   }
   &-title{
     background:$gray;
+  }
+  &-toggleBtn{
+    display: flex;
+    align-items: center;
+    position: relative;
+    .loading{
+      position: absolute;
+      display: none;
+    }
   }
 }
 
@@ -55,3 +65,4 @@
 .orderNum{
   font-size:0.85em ;
 }
+

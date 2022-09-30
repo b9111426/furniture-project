@@ -108,7 +108,11 @@ html {
 }
 
 .d-inline {
-  display: inline;
+  display: inline !important;
+}
+
+.d-none {
+  display: none !important;
 }
 
 .loading {
@@ -180,6 +184,88 @@ html {
   100% {
     background-position: -150% -150%;
   }
+}
+
+.toggle-switch {
+  margin-left: 2rem;
+  display: inline-block;
+  width: 85px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 17px;
+  position: relative;
+  -webkit-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+}
+
+.toggle-switch::after {
+  content: '';
+  display: inline-block;
+  width: 29.75px;
+  height: 29.75px;
+  background-color: #fff;
+  border-radius: 14.875px;
+  position: absolute;
+  top: 2.125px;
+  -webkit-transform: translateX(2.125px);
+          transform: translateX(2.125px);
+  -webkit-box-shadow: 2.55px 0 2.55px rgba(0, 0, 0, 0.4);
+          box-shadow: 2.55px 0 2.55px rgba(0, 0, 0, 0.4);
+  -webkit-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+  cursor: pointer;
+}
+
+.orderPage-checkbox {
+  display: none;
+}
+
+input[type='checkbox']:checked + .toggle-switch {
+  background-color: #aed265;
+}
+
+input[type='checkbox']:checked + .toggle-switch::after {
+  -webkit-transform: translateX(53.125px);
+          transform: translateX(53.125px);
+  -webkit-box-shadow: -2.55px 0 2.55px rgba(0, 0, 0, 0.4);
+          box-shadow: -2.55px 0 2.55px rgba(0, 0, 0, 0.4);
+}
+
+.undo {
+  position: absolute;
+  color: #fff;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  right: .2rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.done {
+  display: none;
+}
+
+input[type='checkbox']:checked + .toggle-switch > .undo {
+  display: none;
+}
+
+input[type='checkbox']:checked + .toggle-switch > .done {
+  display: inline;
+  position: absolute;
+  color: #fff;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  left: .2rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .topBar {
@@ -1174,6 +1260,7 @@ html {
   padding: 10px;
   text-align: left;
   border: 1px solid #2c2c2c;
+  vertical-align: middle;
 }
 
 .orderPage-tbody {
@@ -1186,6 +1273,21 @@ html {
 
 .orderPage-title {
   background: #ccc;
+}
+
+.orderPage-toggleBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.orderPage-toggleBtn .loading {
+  position: absolute;
+  display: none;
 }
 
 .delSingleOrder-Btn {

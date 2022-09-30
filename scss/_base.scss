@@ -41,8 +41,12 @@ html{
 }
 
 .d-inline{
-  display:inline;
+  display:inline !important;
 }
+.d-none{
+  display: none !important;
+}
+
 .loading{
   display: inline;
   height: 20px;
