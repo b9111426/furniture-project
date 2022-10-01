@@ -201,7 +201,7 @@ html {
 }
 
 .toggle-switch {
-  margin-left: 2rem;
+  margin-left: 1.5rem;
   display: inline-block;
   width: 85px;
   height: 34px;
@@ -243,6 +243,7 @@ input[type='checkbox']:checked + .toggle-switch::after {
           transform: translateX(53.125px);
   -webkit-box-shadow: -2.55px 0 2.55px rgba(0, 0, 0, 0.4);
           box-shadow: -2.55px 0 2.55px rgba(0, 0, 0, 0.4);
+  background-color: #ecf5db;
 }
 
 .undo {
@@ -519,15 +520,22 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   left: 50%;
 }
 
-.banner-arrow {
+.banner-arrow .material-icons {
   position: absolute;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  margin: auto;
+  left: 50%;
+  top: 97%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   text-align: center;
   color: #5188b1;
-  font-size: 100px;
+  font-size: 5rem;
+  cursor: pointer;
+  -webkit-transition: .2s all ease-in-out;
+  transition: .2s all ease-in-out;
+}
+
+.banner-arrow .material-icons:hover {
+  color: #aed265;
 }
 
 .bedAdvantage {
@@ -1284,7 +1292,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   max-width: 62.66666%;
 }
 
-.total-counted {
+.totalCounted {
   color: #5188b1;
 }
 
@@ -1316,7 +1324,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 }
 
 .orderPage-tableWrap::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+  background-color: #5188b1;
   border-radius: 5px;
 }
 
@@ -1331,6 +1339,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   padding: 10px;
   text-align: left;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .orderPage-table td {
@@ -1387,12 +1396,27 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   position: absolute;
 }
 
+.orderPage-deleteBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.orderPage-deleteBtn .loading {
+  position: absolute;
+}
+
 .delSingleOrder-Btn {
   display: block;
   background-color: #1d3342;
   color: #fff;
   border: 0;
   padding: 5px 10px;
+  margin-left: 1.5rem;
   cursor: pointer;
 }
 
@@ -1402,5 +1426,14 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .orderNum {
   font-size: 0.85em;
+}
+
+.emptyOrder td {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.emptyOrder td:first-child, .emptyOrder td:nth-child(2) {
+  border-right: 1px solid #fff;
 }
 /*# sourceMappingURL=all.css.map */

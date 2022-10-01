@@ -191,15 +191,19 @@
     top: 50%;
     left: 50%;
   }
-  &-arrow{
+  &-arrow .material-icons{
     position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
+    left: 50%;
+    top: 97%;
+    transform: translate(-50% ,-50%);
     text-align: center;
     color: $primary;
-    font-size: 100px;
+    font-size: 5rem;
+    cursor: pointer;
+    transition:.2s all ease-in-out;
+    &:hover{
+      color: $secondary;
+    }
   }
 }
 

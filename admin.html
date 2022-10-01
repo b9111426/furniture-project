@@ -31,15 +31,15 @@
       <div class="row m-b-s">
         <div class="chart-box chart-info">
           <p class="chart-txt">待處理</p>
-          <div class="chart-num">0</div>
+          <div class="chart-num totalStatus">0</div>
         </div>
         <div class="chart-box chart-info">
           <p class="chart-txt">訂單數</p>
-          <div class="chart-num">0</div>
+          <div class="chart-num totalOrders">0</div>
         </div>
         <div class="chart-box chart-info">
-          <p class="chart-txt">營業額</p>
-          <div class="chart-num total-counted">0</div>
+          <p class="chart-txt">總營業額</p>
+          <div class="chart-num totalCounted">0</div>
         </div>
       </div>
       <div class="row">
@@ -70,6 +70,14 @@
                     </tr>
                 </thead>
                 <tbody class="orderPage-tbody js-orderList">
+                  <tr class="emptyOrder">
+                    <td></td>
+                    <td  colspan="6">
+                      <img class="loading" src="./asset/load.gif" alt="">
+                      loading...
+                    </td>
+                    <td></td>
+                  </tr>
                 </tbody>
             </table>
         </div>

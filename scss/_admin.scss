@@ -31,7 +31,7 @@
     max-width: 62.66666%;
   }
 }
-.total-counted{
+.totalCounted{
   color:$primary;
 }
 
@@ -54,7 +54,7 @@
       height: 10px;
     }
     &::-webkit-scrollbar-thumb{
-      background-color:$gray;
+      background-color:$primary;
       border-radius: 5px;
     }
   }
@@ -69,6 +69,7 @@
     padding: 10px;
     text-align: left;
     vertical-align: middle;
+    white-space: nowrap;
   }
   &-table td{
     border-top: 1px solid $gray;
@@ -112,6 +113,15 @@
       position: absolute;
     }
   }
+
+  &-deleteBtn{
+    display: flex;
+    align-items: center;
+    position: relative;
+    .loading{
+      position: absolute;
+    }
+  }
 }
 
 .delSingleOrder-Btn {
@@ -120,6 +130,7 @@
   color: $white;
   border: 0;
   padding: 5px 10px;
+  margin-left: 1.5rem;
   cursor: pointer;
   &:hover{
     background-color:$danger;
@@ -130,3 +141,11 @@
   font-size:0.85em ;
 }
 
+.emptyOrder td{
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.emptyOrder td:first-child,.emptyOrder td:nth-child(2){
+  border-right: 1px solid $white;
+}

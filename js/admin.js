@@ -3,6 +3,9 @@ const { api_path, token, adminInstance } = config
 
 let orderData = []
 const orderList = document.querySelector('.js-orderList')
+const totalStatus = document.querySelector('.totalStatus')
+const totalOrders = document.querySelector('.totalOrders')
+const totalCounted = document.querySelector('.totalCounted')
 
 function init () {
   getOrdList()
@@ -18,7 +21,12 @@ function getOrdList () {
       console.log(res.data.orders)
       orderData = res.data.orders
       let str = ''
+      let totalStatusNum = 0
+      let totalCountedNum = 0
       orderData.forEach(item => {
+        //加總資訊
+        if(!item.paid){totalStatusNum++}
+        totalCountedNum+=item.total
         // 組時間字串
         const timeStamp = new Date(item.createdAt * 1000)
         const orderTime = `${timeStamp.getFullYear()}/${timeStamp.getMonth() + 1}/${timeStamp.getDate()}`
@@ -44,7 +52,7 @@ function getOrdList () {
             <td>${orderTime}</td>
             <td >
               <div class="orderPage-toggleBtn">
-                <img class='loading d-none' src="./asset/load.gif" alt="">
+                <img class="loading d-none" src="./asset/load.gif" alt="">
                 <input type="checkbox" class="orderPage-checkbox" ${item.paid ? 'checked' : ''}>
                 <span class="toggle-switch" data-status="${item.paid}" data-id="${item.id}">
                     <span class="undo">未處理</span>
@@ -53,12 +61,21 @@ function getOrdList () {
               </div>
             </td>
             <td>
-              <input type="button" class="delSingleOrder-Btn js-orderDelete" data-id="${item.id}" value="刪除">
+              <div class="orderPage-deleteBtn">
+                <img class="loading d-none" src="./asset/load.gif" alt="">
+                <input type="button" class="delSingleOrder-Btn js-orderDelete" data-id="${item.id}" value="刪除">
+              </div>
             </td>
           </tr>`
       })
-
-      orderList.innerHTML = str
+      totalOrders.textContent = orderData.length
+      totalStatus.textContent = totalStatusNum
+      totalCounted.textContent = totalCountedNum.toString()
+      if(orderData.length){
+        orderList.innerHTML = str
+      }else{
+        orderList.innerHTML = '<tr class="emptyOrder"><td></td><td  colspan="6">無訂單資料</td><td></td></tr>'
+      }
       renderC3()
     })
 }
@@ -116,7 +133,8 @@ orderList.addEventListener('click', (e) => {
   const targetClass = e.target.getAttribute('class')
   const id = e.target.getAttribute('data-id')
   if (targetClass === 'delSingleOrder-Btn js-orderDelete') {
-    // deleteOrderItem(id)
+    const loading = e.target.parentNode.querySelector('.loading')
+    deleteOrderItem(id,loading)
     return
   }
   if (targetClass === 'toggle-switch') {
@@ -130,15 +148,10 @@ orderList.addEventListener('click', (e) => {
 function changeOrderStatus (status, id, checkBox, loading) {
   loading.classList.remove('d-none')
   let newStatus
-  if (status === 'true') {
-    newStatus = false
-  } else {
-    newStatus = true
-  }
   adminInstance.put(`/${api_path}/orders`, {
     data: {
       id: id,
-      paid: newStatus
+      paid: status === 'true'? newStatus = false: newStatus = true
     }
   }, {
     headers: {
@@ -148,16 +161,19 @@ function changeOrderStatus (status, id, checkBox, loading) {
     .then(res => {
       loading.classList.add('d-none')
       checkBox.checked = !checkBox.checked
+      getOrdList()
     })
 }
 
-function deleteOrderItem (id) {
+function deleteOrderItem (id,loading) {
+  loading.classList.remove('d-none')
   axios.delete(`https://livejs-api.hexschool.io/api/livejs/v1/admin/${api_path}/orders/${id}`, {
     headers: {
       Authorization: token
     }
   })
-    .then(function (response) {
+    .then(res => {
+      loading.classList.add('d-none')
       getOrdList()
     })
 }
