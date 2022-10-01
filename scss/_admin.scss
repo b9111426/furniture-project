@@ -1,6 +1,43 @@
+.chart{
+  &-section{
+    margin-top: 70px;
+    padding: 10px;
+  }
+  &-box{
+    background-color: $white;
+    border: 1px solid $gray;
+    padding: 15px 30px;
+    border-radius: 10px;
+    margin: 0 .5%;
+  }
+  &-info{
+    width: 100%;
+    text-align: right;
+    max-width: 31.33333%;
+    color:$black;
+  }
+  &-num{
+    font-size: 3rem;
+  }
+  &-txt{
+    font-size: 1.5rem;
+  }
+  &-left{
+    width: 100%;
+    max-width: 31.33333%;
+  }
+  &-right{
+    width: 100%;
+    max-width: 62.66666%;
+  }
+}
+.total-counted{
+  color:$primary;
+}
+
 .orderPage{
   &-list{
-    padding: 60px 10px;
+    padding: 30px 10px;
     display: flex;
     flex-direction: column;
   }
@@ -9,26 +46,61 @@
     align-self: flex-end;
     margin-bottom: 12px;
   }
-  &-table{
-    border: 1px solid $black;
+  &-tableWrap{
     width: 100%;
-    @include desktop(){
-      width: 1100px;
+    overflow-x: auto;
+    &::-webkit-scrollbar{
+      background-color: $light;
+      height: 10px;
     }
+    &::-webkit-scrollbar-thumb{
+      background-color:$gray;
+      border-radius: 5px;
+    }
+  }
+  &-table{
+    width: 100%;
+    border-collapse:separate;
+    border-radius: 10px;
+    border: 1px solid $gray;
   }
   
   &-table th, &-table td{
     padding: 10px;
     text-align: left;
-    border: 1px solid $black;
     vertical-align: middle;
   }
+  &-table td{
+    border-top: 1px solid $gray;
+  }
+  &-table td:not(:last-child){
+    border-right: 1px solid $gray;
+  }
+  &-thead{
+    background-color: $gray;
+  }
+  &-thead th:first-child{
+    border-radius: 10px 0 0 0;
+  }
+  &-thead th:last-child{
+    border-radius: 0 10px 0 0;
+  }
+
   &-tbody{
     background-color: $white;
     tr:hover{
       background-color:$bright-gray;
     }
   }
+  &-tbody tr:last-child td:first-child{
+    border-radius: 0  0 0 10px;
+  }
+
+  &-tbody tr:last-child td:last-child{
+    border-radius: 0  0 10px 0;
+  }
+
+  
   &-title{
     background:$gray;
   }
@@ -38,7 +110,6 @@
     position: relative;
     .loading{
       position: absolute;
-      display: none;
     }
   }
 }
@@ -52,13 +123,6 @@
   cursor: pointer;
   &:hover{
     background-color:$danger;
-  }
-}
-
-.orderTableWrap {
-  overflow-x: scroll;
-  &::-webkit-scrollbar {
-    display: none;
   }
 }
 

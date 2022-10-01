@@ -3,8 +3,7 @@ const { api_path, token, adminInstance } = config
 
 let orderData = []
 const orderList = document.querySelector('.js-orderList')
-const checkbox = document.querySelectorAll('input[type=checkbox]')
-console.log(checkbox)
+
 function init () {
   getOrdList()
 };
@@ -45,7 +44,7 @@ function getOrdList () {
             <td>${orderTime}</td>
             <td >
               <div class="orderPage-toggleBtn">
-                <img class='loading' src="./asset/load.gif" alt="">
+                <img class='loading d-none' src="./asset/load.gif" alt="">
                 <input type="checkbox" class="orderPage-checkbox" ${item.paid ? 'checked' : ''}>
                 <span class="toggle-switch" data-status="${item.paid}" data-id="${item.id}">
                     <span class="undo">未處理</span>
@@ -123,18 +122,20 @@ orderList.addEventListener('click', (e) => {
   if (targetClass === 'toggle-switch') {
     const status = e.target.getAttribute('data-status')
     const checkBox = e.target.parentNode.querySelector('.orderPage-checkbox')
-    changeOrderStatus(status, id, checkBox)
+    const loading = e.target.parentNode.querySelector('.loading')
+    changeOrderStatus(status, id, checkBox, loading)
   }
 })
 
-function changeOrderStatus (status, id, checkBox) {
+function changeOrderStatus (status, id, checkBox, loading) {
+  loading.classList.remove('d-none')
   let newStatus
   if (status === 'true') {
     newStatus = false
   } else {
     newStatus = true
   }
-  axios.put(`https://livejs-api.hexschool.io/api/livejs/v1/admin/${api_path}/orders`, {
+  adminInstance.put(`/${api_path}/orders`, {
     data: {
       id: id,
       paid: newStatus
@@ -144,7 +145,8 @@ function changeOrderStatus (status, id, checkBox) {
       Authorization: token
     }
   })
-    .then(function (response) {
+    .then(res => {
+      loading.classList.add('d-none')
       checkBox.checked = !checkBox.checked
     })
 }

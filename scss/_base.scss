@@ -5,10 +5,16 @@ html{
   scroll-behavior: smooth;
   background-color: $light;
 }
+
 .wrap {
   max-width: 1110px;
   margin: 0 auto;
 } 
+.row{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .section-title {
   text-align: center;
@@ -28,6 +34,9 @@ html{
 
 .m-b{
   margin-bottom: 3rem;
+}
+.m-b-s{
+  margin-bottom: 1rem;
 }
 
 .txt-white{

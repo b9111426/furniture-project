@@ -598,6 +598,9 @@
   }
   &-tableList{
     background-color:$white;
+    tr:hover{
+      background-color:$bright-gray;
+    }
   }
   &-table th, &-table td {
     padding: 15px;

@@ -75,6 +75,16 @@ html {
   margin: 0 auto;
 }
 
+.row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .section-title {
   text-align: center;
   font-size: 1.75rem;
@@ -93,6 +103,10 @@ html {
 
 .m-b {
   margin-bottom: 3rem;
+}
+
+.m-b-s {
+  margin-bottom: 1rem;
 }
 
 .txt-white {
@@ -1074,6 +1088,10 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   background-color: #fff;
 }
 
+.shopping-tableList tr:hover {
+  background-color: #f8f8f8;
+}
+
 .shopping-table th, .shopping-table td {
   padding: 15px;
   vertical-align: middle;
@@ -1228,8 +1246,50 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   border-color: #e6484d;
 }
 
+.chart-section {
+  margin-top: 70px;
+  padding: 10px;
+}
+
+.chart-box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 15px 30px;
+  border-radius: 10px;
+  margin: 0 .5%;
+}
+
+.chart-info {
+  width: 100%;
+  text-align: right;
+  max-width: 31.33333%;
+  color: #2c2c2c;
+}
+
+.chart-num {
+  font-size: 3rem;
+}
+
+.chart-txt {
+  font-size: 1.5rem;
+}
+
+.chart-left {
+  width: 100%;
+  max-width: 31.33333%;
+}
+
+.chart-right {
+  width: 100%;
+  max-width: 62.66666%;
+}
+
+.total-counted {
+  color: #5188b1;
+}
+
 .orderPage-list {
-  padding: 60px 10px;
+  padding: 30px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1245,22 +1305,52 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   margin-bottom: 12px;
 }
 
-.orderPage-table {
-  border: 1px solid #2c2c2c;
+.orderPage-tableWrap {
   width: 100%;
+  overflow-x: auto;
 }
 
-@media (max-width: 1110px) {
-  .orderPage-table {
-    width: 1100px;
-  }
+.orderPage-tableWrap::-webkit-scrollbar {
+  background-color: #e0f1f1;
+  height: 10px;
+}
+
+.orderPage-tableWrap::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+.orderPage-table {
+  width: 100%;
+  border-collapse: separate;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 
 .orderPage-table th, .orderPage-table td {
   padding: 10px;
   text-align: left;
-  border: 1px solid #2c2c2c;
   vertical-align: middle;
+}
+
+.orderPage-table td {
+  border-top: 1px solid #ccc;
+}
+
+.orderPage-table td:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
+
+.orderPage-thead {
+  background-color: #ccc;
+}
+
+.orderPage-thead th:first-child {
+  border-radius: 10px 0 0 0;
+}
+
+.orderPage-thead th:last-child {
+  border-radius: 0 10px 0 0;
 }
 
 .orderPage-tbody {
@@ -1269,6 +1359,14 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .orderPage-tbody tr:hover {
   background-color: #f8f8f8;
+}
+
+.orderPage-tbody tr:last-child td:first-child {
+  border-radius: 0  0 0 10px;
+}
+
+.orderPage-tbody tr:last-child td:last-child {
+  border-radius: 0  0 10px 0;
 }
 
 .orderPage-title {
@@ -1287,7 +1385,6 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .orderPage-toggleBtn .loading {
   position: absolute;
-  display: none;
 }
 
 .delSingleOrder-Btn {
@@ -1301,14 +1398,6 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .delSingleOrder-Btn:hover {
   background-color: #e6484d;
-}
-
-.orderTableWrap {
-  overflow-x: scroll;
-}
-
-.orderTableWrap::-webkit-scrollbar {
-  display: none;
 }
 
 .orderNum {
