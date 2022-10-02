@@ -557,11 +557,11 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .bedAdvantage-box {
   position: relative;
-  max-width: 33%;
+  max-width: 31.33333%;
   min-height: 200px;
   background-color: #1d3342;
   padding: .5rem;
-  margin: 0 .2rem;
+  margin: 0.5%;
 }
 
 @media (max-width: 767px) {
@@ -1000,9 +1000,9 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .product-card {
   position: relative;
-  margin-right: 2%;
+  margin: 0 1%;
+  margin-bottom: 0.5%;
   width: 23%;
-  margin-bottom: 30px;
 }
 
 @media (max-width: 900px) {
@@ -1264,12 +1264,11 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   border: 1px solid #ccc;
   padding: 15px 30px;
   border-radius: 10px;
-  margin: 0 .5%;
+  margin: 0.5%;
 }
 
 .chart-info {
   width: 100%;
-  text-align: right;
   max-width: 31.33333%;
   color: #2c2c2c;
 }
@@ -1279,6 +1278,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 }
 
 .chart-txt {
+  text-align: right;
   font-size: 1.5rem;
 }
 
@@ -1310,6 +1310,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 .orderPage-list .discardAllBtn {
   -ms-flex-item-align: end;
       align-self: flex-end;
+  font-size: 1rem;
   margin-bottom: 12px;
 }
 
@@ -1417,6 +1418,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   border: 0;
   padding: 5px 10px;
   margin-left: 1.5rem;
+  border-radius: 5px;
   cursor: pointer;
 }
 

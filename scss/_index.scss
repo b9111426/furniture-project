@@ -217,11 +217,11 @@
   }
   &-box{
     position: relative;
-    max-width: 33%;
+    max-width: 31.33333%;
     min-height: 200px;
     background-color: $dark;
     padding: .5rem;
-    margin: 0 .2rem;
+    margin:$gutter;
 
     @include pad(){
       max-width: 100%;
@@ -527,9 +527,9 @@
   }
   &-card{
     position: relative;
-    margin-right: 2%;
+    margin: 0 $gutter-l;
+    margin-bottom: $gutter;
     width: 23%;
-    margin-bottom: 30px;
     @include laptop(){
       width: 48%;
     }

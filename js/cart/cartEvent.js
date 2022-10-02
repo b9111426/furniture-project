@@ -39,7 +39,7 @@ export default {
         return
       }
       const productId = e.target.getAttribute('data-id')
-      console.log(eventObj.cartData);
+      console.log(eventObj.cartData)
       eventObj.cartData.forEach(item => {
         if (item.product.id === productId) {
           eventObj.numCheck = item.quantity + 1
@@ -52,11 +52,11 @@ export default {
           quantity: eventObj.numCheck
         }
       }).then(res => {
-          getCartList().then(res => {
-            eventObj.getData(res.data.carts)
-            renderCartList(res.data)
-            eventObj.numCheck = 1
-          })
+        getCartList().then(res => {
+          eventObj.getData(res.data.carts)
+          renderCartList(res.data)
+          eventObj.numCheck = 1
+        })
       })
     })
   },
@@ -87,10 +87,10 @@ export default {
       e.preventDefault()
       instance.delete(`/${api_path}/carts`)
         .then(res => {
-            getCartList().then(res => {
-              eventObj.getData(res.data.carts)
-              renderCartList(res.data)
-            })
+          getCartList().then(res => {
+            eventObj.getData(res.data.carts)
+            renderCartList(res.data)
+          })
         })
         .catch(err => {
           const { message } = JSON.parse(err.request.responseText)
@@ -134,10 +134,10 @@ export default {
           const info = '訂單建立成功'
           Swal.fire(sweetAlertSet('success', info))
           document.querySelector('.orderInfo-form').reset()
-            getCartList().then(res => {
-              eventObj.getData(res.data.carts)
-              renderCartList(res.data)
-            })
+          getCartList().then(res => {
+            eventObj.getData(res.data.carts)
+            renderCartList(res.data)
+          })
         })
     })
   },

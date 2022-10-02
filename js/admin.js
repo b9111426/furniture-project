@@ -1,11 +1,13 @@
 import config from './asset/config.js'
+import { sweetAlertSet } from './libs/sweetAlertSet.js'
 const { api_path, token, adminInstance } = config
-
+const productObject = {}
 let orderData = []
 const orderList = document.querySelector('.js-orderList')
 const totalStatus = document.querySelector('.totalStatus')
 const totalOrders = document.querySelector('.totalOrders')
 const totalCounted = document.querySelector('.totalCounted')
+const discardAllBtn = document.querySelector('.discardAllBtn')
 
 function init () {
   getOrdList()
@@ -18,15 +20,15 @@ function getOrdList () {
     }
   })
     .then(res => {
-      console.log(res.data.orders)
       orderData = res.data.orders
       let str = ''
       let totalStatusNum = 0
       let totalCountedNum = 0
       orderData.forEach(item => {
-        //加總資訊
-        if(!item.paid){totalStatusNum++}
-        totalCountedNum+=item.total
+        // 加總資訊
+        if (!item.paid) { totalStatusNum++ }
+        totalCountedNum += item.total
+
         // 組時間字串
         const timeStamp = new Date(item.createdAt * 1000)
         const orderTime = `${timeStamp.getFullYear()}/${timeStamp.getMonth() + 1}/${timeStamp.getDate()}`
@@ -34,6 +36,16 @@ function getOrdList () {
         let productStr = ''
         item.products.forEach(productItem => {
           if (productItem) { productStr += `<p>${productItem.title}x${productItem.quantity}</p>` }
+        })
+
+        // 組chart資料
+        item.products.forEach(item => {
+          const itemName = item.title
+          if (!productObject[itemName]) {
+            productObject[itemName] = 1
+          } else {
+            productObject[itemName] += 1
+          }
         })
 
         // 組產品字串
@@ -71,9 +83,9 @@ function getOrdList () {
       totalOrders.textContent = orderData.length
       totalStatus.textContent = totalStatusNum
       totalCounted.textContent = totalCountedNum.toString()
-      if(orderData.length){
+      if (orderData.length) {
         orderList.innerHTML = str
-      }else{
+      } else {
         orderList.innerHTML = '<tr class="emptyOrder"><td></td><td  colspan="6">無訂單資料</td><td></td></tr>'
       }
       renderC3()
@@ -81,49 +93,28 @@ function getOrdList () {
 }
 
 function renderC3 () {
-  // 物件資料收集
-  const total = {}
   const chartData = []
-  orderData.forEach(function (item) {
-    item.products.forEach(function (productItem) {
-      if (total[productItem.title] == undefined) {
-        total[productItem.title] = productItem.price * productItem.quantity
-      } else {
-        total[productItem.title] += productItem.price * productItem.quantity
-      }
-    })
-  })
-  const ary = Object.keys(total)
-  ary.forEach(function (item) {
-    const newAry = []
-    newAry.push(item)
-    newAry.push(total[item])
-    chartData.push(newAry)
-  })
-  chartData.sort(function (a, b) {
-    return b[1] - a[1]
+  Object.keys(productObject).forEach(item => {
+    const ary = []
+    ary.push(item)
+    ary.push(productObject[item])
+    chartData.push(ary)
   })
 
-  if (chartData.length > 3) {
-    let otherTotal = 0
-    chartData.forEach(function (item, index) {
-      if (index > 2) {
-        otherTotal += chartData[index][1]
-      }
-    })
-    chartData.splice(3)
-    chartData.push(['其他', otherTotal])
-  }
-
-  // C3.js
-  const chart = c3.generate({
+  const pieChart = c3.generate({
     bindto: '#chart',
+    size: {
+      height: 480
+    },
+    tooltip: {
+      show: true
+    },
     data: {
       type: 'pie',
       columns: chartData
     },
     color: {
-      pattern: ['#F2E26D', '#FCB172', '#E67497', '#A372FC']
+      pattern: ['#FF2D2D', '#FF8000', '#FFD306', '#00DB00', '#0072E3', '#004B97', '#8600FF', '#7B7B7B']
     }
   })
 }
@@ -134,7 +125,7 @@ orderList.addEventListener('click', (e) => {
   const id = e.target.getAttribute('data-id')
   if (targetClass === 'delSingleOrder-Btn js-orderDelete') {
     const loading = e.target.parentNode.querySelector('.loading')
-    deleteOrderItem(id,loading)
+    deleteOrderItem(id, loading)
     return
   }
   if (targetClass === 'toggle-switch') {
@@ -151,7 +142,7 @@ function changeOrderStatus (status, id, checkBox, loading) {
   adminInstance.put(`/${api_path}/orders`, {
     data: {
       id: id,
-      paid: status === 'true'? newStatus = false: newStatus = true
+      paid: status === 'true' ? newStatus = false : newStatus = true
     }
   }, {
     headers: {
@@ -165,9 +156,9 @@ function changeOrderStatus (status, id, checkBox, loading) {
     })
 }
 
-function deleteOrderItem (id,loading) {
+function deleteOrderItem (id, loading) {
   loading.classList.remove('d-none')
-  axios.delete(`https://livejs-api.hexschool.io/api/livejs/v1/admin/${api_path}/orders/${id}`, {
+  adminInstance.delete(`/${api_path}/orders/${id}`, {
     headers: {
       Authorization: token
     }
@@ -177,3 +168,16 @@ function deleteOrderItem (id,loading) {
       getOrdList()
     })
 }
+
+discardAllBtn.addEventListener('click', (e) => {
+  adminInstance.delete(`/${api_path}/orders`, {
+    headers: {
+      Authorization: token
+    }
+  }).then(res => {
+    getOrdList()
+  }).catch(err => {
+    const info = JSON.parse(err.request.response).message.split(' ')[0]
+    Swal.fire(sweetAlertSet('info', info))
+  })
+})
