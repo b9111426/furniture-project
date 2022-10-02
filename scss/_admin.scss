@@ -151,3 +151,9 @@
 .emptyOrder td:first-child,.emptyOrder td:nth-child(2){
   border-right: 1px solid $white;
 }
+
+.monthChart{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

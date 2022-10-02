@@ -1438,4 +1438,17 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 .emptyOrder td:first-child, .emptyOrder td:nth-child(2) {
   border-right: 1px solid #fff;
 }
+
+.monthChart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
 /*# sourceMappingURL=all.css.map */

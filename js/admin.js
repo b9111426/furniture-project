@@ -1,7 +1,6 @@
 import config from './asset/config.js'
 import { sweetAlertSet } from './libs/sweetAlertSet.js'
 const { api_path, token, adminInstance } = config
-const productObject = {}
 let orderData = []
 const orderList = document.querySelector('.js-orderList')
 const totalStatus = document.querySelector('.totalStatus')
@@ -24,6 +23,7 @@ function getOrdList () {
       let str = ''
       let totalStatusNum = 0
       let totalCountedNum = 0
+      const productObject = {}
       orderData.forEach(item => {
         // 加總資訊
         if (!item.paid) { totalStatusNum++ }
@@ -88,11 +88,11 @@ function getOrdList () {
       } else {
         orderList.innerHTML = '<tr class="emptyOrder"><td></td><td  colspan="6">無訂單資料</td><td></td></tr>'
       }
-      renderC3()
+      renderC3(productObject,totalCountedNum)
     })
 }
 
-function renderC3 () {
+function renderC3 (productObject,totalCountedNum) {
   const chartData = []
   Object.keys(productObject).forEach(item => {
     const ary = []
@@ -101,22 +101,50 @@ function renderC3 () {
     chartData.push(ary)
   })
 
-  const pieChart = c3.generate({
-    bindto: '#chart',
+  const timeAry = ['x']
+  const monthEarn = {0:'月營收'}
+  const thisYear = new Date().getFullYear()
+  const thisMonth = new Date().getMonth()
+  for (let idx = 1; idx < 13; idx++) {
+    let str = `${thisYear}-${idx}-1`
+    timeAry.push(str)
+    monthEarn[idx] = 0
+  }
+  monthEarn[thisMonth] = monthEarn[thisMonth]+ totalCountedNum
+
+
+  c3.generate({
+    bindto: '#productChart',
     size: {
-      height: 480
+      height: 400
     },
     tooltip: {
-      show: true
+      show: false
     },
     data: {
       type: 'pie',
-      columns: chartData
-    },
-    color: {
-      pattern: ['#FF2D2D', '#FF8000', '#FFD306', '#00DB00', '#0072E3', '#004B97', '#8600FF', '#7B7B7B']
+      columns: chartData,
     }
   })
+
+  c3.generate({
+    bindto: '#monthChart',
+    data: {
+        x: 'x',
+        columns: [
+          timeAry,
+          Object.values(monthEarn),
+        ],
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%Y/%m'
+            }
+        }
+    }
+});
 }
 
 orderList.addEventListener('click', (e) => {

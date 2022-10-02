@@ -39,7 +39,6 @@ export default {
         return
       }
       const productId = e.target.getAttribute('data-id')
-      console.log(eventObj.cartData)
       eventObj.cartData.forEach(item => {
         if (item.product.id === productId) {
           eventObj.numCheck = item.quantity + 1
