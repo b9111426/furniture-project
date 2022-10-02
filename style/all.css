@@ -1439,7 +1439,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   border-right: 1px solid #fff;
 }
 
-.monthChart {
+.earnChart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

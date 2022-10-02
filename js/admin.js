@@ -92,7 +92,7 @@ function getOrdList () {
     })
 }
 
-function renderC3 (productObject,totalCountedNum) {
+function renderC3 (productObject) {
   const chartData = []
   Object.keys(productObject).forEach(item => {
     const ary = []
@@ -100,17 +100,6 @@ function renderC3 (productObject,totalCountedNum) {
     ary.push(productObject[item])
     chartData.push(ary)
   })
-
-  const timeAry = ['x']
-  const monthEarn = {0:'月營收'}
-  const thisYear = new Date().getFullYear()
-  const thisMonth = new Date().getMonth()
-  for (let idx = 1; idx < 13; idx++) {
-    let str = `${thisYear}-${idx}-1`
-    timeAry.push(str)
-    monthEarn[idx] = 0
-  }
-  monthEarn[thisMonth] = monthEarn[thisMonth]+ totalCountedNum
 
 
   c3.generate({
@@ -128,23 +117,24 @@ function renderC3 (productObject,totalCountedNum) {
   })
 
   c3.generate({
-    bindto: '#monthChart',
+    bindto: '#earnChart',
     data: {
-        x: 'x',
         columns: [
-          timeAry,
-          Object.values(monthEarn),
+            ['aaa', 30 ],
+            ['bbb', 130],
+            ['ccc', 130],
         ],
+        type: 'bar'
     },
-    axis: {
-        x: {
-            type: 'timeseries',
-            tick: {
-                format: '%Y/%m'
-            }
+    bar: {
+      space: 0.25,
+        width: {
+            ratio: .5 
         }
     }
 });
+
+
 }
 
 orderList.addEventListener('click', (e) => {
