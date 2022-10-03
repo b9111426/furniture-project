@@ -604,7 +604,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   float: left;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .feature-left {
     width: 100%;
   }
@@ -626,7 +626,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
           align-items: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .feature-right {
     width: 100%;
     height: 100vw;
@@ -635,10 +635,16 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .feature-right-content {
   max-width: 50%;
-  max-height: 50%;
   background-color: #e0f1f1;
   padding: 50px;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .feature-right-content {
+    max-width: 70%;
+    padding: 25px;
+  }
 }
 
 .feature-right-title {
@@ -651,10 +657,25 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .feature-right-title h3 {
   color: #1d3342;
+  display: inline;
+  margin-left: .5rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .feature-right-title {
+    font-size: 1.2rem;
+  }
+}
+
+.feature-right-logo {
+  display: inline;
+  white-space: nowrap;
 }
 
 .feature-right-list {
-  max-width: 50%;
+  width: 50%;
+  padding-left: 1rem;
   margin: 1rem auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -669,11 +690,18 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   border-left: 1px solid #1d3342;
 }
 
-.feature-right-list li {
+.feature-right-list > li {
+  white-space: nowrap;
   color: #1d3342;
   text-align: left;
   font-size: 1.5rem;
   margin-top: .5rem;
+}
+
+@media (max-width: 767px) {
+  .feature-right-list > li {
+    font-size: 1rem;
+  }
 }
 
 .feature-items {
@@ -821,6 +849,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
+    display: none;
   }
 }
 
@@ -1100,14 +1129,8 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   margin: 0 auto;
   border-collapse: collapse;
   font-size: 1.25rem;
-  width: 850px;
   border: 1px solid #cfcfcf;
-}
-
-@media (max-width: 767px) {
-  .shopping-table {
-    width: 700px;
-  }
+  width: 100%;
 }
 
 .shopping-tableList {
@@ -1270,6 +1293,22 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .formWarning {
   border-color: #e6484d;
+}
+
+.overflowWrap {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.overflowWrap::-webkit-scrollbar {
+  background-color: #1d3342;
+  height: 10px;
+}
+
+.overflowWrap::-webkit-scrollbar-thumb {
+  background-color: #aed265;
+  border-radius: 5px;
 }
 
 .chart-section {
