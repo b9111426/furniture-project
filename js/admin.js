@@ -1,32 +1,36 @@
 import config from './asset/config.js'
-import { sweetAlertSet } from './libs/sweetAlertSet.js'
+import { totalProductsNum } from './admin/totalProductNum.js'
+import { renderC3 } from './libs/renderC3.js'
+import adminEvent from './admin/adminEvent.js'
+
 const { api_path, token, adminInstance } = config
-let orderData = []
 const orderList = document.querySelector('.js-orderList')
-const totalStatus = document.querySelector('.totalStatus')
+const productsNum = document.querySelector('.productsNum')
 const totalOrders = document.querySelector('.totalOrders')
 const totalCounted = document.querySelector('.totalCounted')
-const discardAllBtn = document.querySelector('.discardAllBtn')
 
 function init () {
   getOrdList()
-};
+}
 init()
-function getOrdList () {
+
+export function getOrdList () {
   adminInstance.get(`/${api_path}/orders`, {
     headers: {
       Authorization: token
     }
   })
     .then(res => {
-      orderData = res.data.orders
+      const orderData = res.data.orders
       let str = ''
-      let totalStatusNum = 0
       let totalCountedNum = 0
-      const productObject = {}
+      const productObject = []
+
       orderData.forEach(item => {
+        // 組product資料
+        item.products.forEach(i => productObject.push(i))
+
         // 加總資訊
-        if (!item.paid) { totalStatusNum++ }
         totalCountedNum += item.total
 
         // 組時間字串
@@ -38,15 +42,6 @@ function getOrdList () {
           if (productItem) { productStr += `<p>${productItem.title}x${productItem.quantity}</p>` }
         })
 
-        // 組chart資料
-        item.products.forEach(item => {
-          const itemName = item.title
-          if (!productObject[itemName]) {
-            productObject[itemName] = 1
-          } else {
-            productObject[itemName] += 1
-          }
-        })
 
         // 組產品字串
         str += /* html */`
@@ -80,122 +75,25 @@ function getOrdList () {
             </td>
           </tr>`
       })
-      totalOrders.textContent = orderData.length
-      totalStatus.textContent = totalStatusNum
-      totalCounted.textContent = totalCountedNum.toString()
+
       if (orderData.length) {
         orderList.innerHTML = str
       } else {
         orderList.innerHTML = '<tr class="emptyOrder"><td></td><td  colspan="6">無訂單資料</td><td></td></tr>'
       }
-      renderC3(productObject,totalCountedNum)
+
+      //列表資訊
+      const {totalNum} = totalProductsNum(productObject)
+      productsNum.textContent = totalNum
+      totalOrders.textContent = orderData.length
+      totalCounted.textContent = totalCountedNum.toString()
+
+      renderC3(productObject)
+      
     })
 }
 
-function renderC3 (productObject) {
-  const chartData = []
-  Object.keys(productObject).forEach(item => {
-    const ary = []
-    ary.push(item)
-    ary.push(productObject[item])
-    chartData.push(ary)
-  })
-
-
-  c3.generate({
-    bindto: '#productChart',
-    size: {
-      height: 400
-    },
-    tooltip: {
-      show: false
-    },
-    data: {
-      type: 'pie',
-      columns: chartData,
-    }
-  })
-
-  c3.generate({
-    bindto: '#earnChart',
-    data: {
-        columns: [
-            ['aaa', 30 ],
-            ['bbb', 130],
-            ['ccc', 130],
-        ],
-        type: 'bar'
-    },
-    bar: {
-      space: 0.25,
-        width: {
-            ratio: .5 
-        }
-    }
-});
-
-
-}
-
-orderList.addEventListener('click', (e) => {
-  e.preventDefault()
-  const targetClass = e.target.getAttribute('class')
-  const id = e.target.getAttribute('data-id')
-  if (targetClass === 'delSingleOrder-Btn js-orderDelete') {
-    const loading = e.target.parentNode.querySelector('.loading')
-    deleteOrderItem(id, loading)
-    return
-  }
-  if (targetClass === 'toggle-switch') {
-    const status = e.target.getAttribute('data-status')
-    const checkBox = e.target.parentNode.querySelector('.orderPage-checkbox')
-    const loading = e.target.parentNode.querySelector('.loading')
-    changeOrderStatus(status, id, checkBox, loading)
-  }
+document.addEventListener('DOMContentLoaded',()=>{
+  adminEvent.init(orderList)
 })
 
-function changeOrderStatus (status, id, checkBox, loading) {
-  loading.classList.remove('d-none')
-  let newStatus
-  adminInstance.put(`/${api_path}/orders`, {
-    data: {
-      id: id,
-      paid: status === 'true' ? newStatus = false : newStatus = true
-    }
-  }, {
-    headers: {
-      Authorization: token
-    }
-  })
-    .then(res => {
-      loading.classList.add('d-none')
-      checkBox.checked = !checkBox.checked
-      getOrdList()
-    })
-}
-
-function deleteOrderItem (id, loading) {
-  loading.classList.remove('d-none')
-  adminInstance.delete(`/${api_path}/orders/${id}`, {
-    headers: {
-      Authorization: token
-    }
-  })
-    .then(res => {
-      loading.classList.add('d-none')
-      getOrdList()
-    })
-}
-
-discardAllBtn.addEventListener('click', (e) => {
-  adminInstance.delete(`/${api_path}/orders`, {
-    headers: {
-      Authorization: token
-    }
-  }).then(res => {
-    getOrdList()
-  }).catch(err => {
-    const info = JSON.parse(err.request.response).message.split(' ')[0]
-    Swal.fire(sweetAlertSet('info', info))
-  })
-})
