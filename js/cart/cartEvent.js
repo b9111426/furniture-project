@@ -1,5 +1,5 @@
 import config from '../asset/config.js'
-import { sweetAlertSet } from '../libs/sweetAlertSet.js'
+import { sweetAlertSet, fadeAlertSet } from '../libs/sweetAlertSet.js'
 import { getCartList, renderCartList } from './getCartList.js'
 import { constraints } from './validate.js'
 import { orderInputStatus } from './orderInputStatus.js'
@@ -32,8 +32,11 @@ export default {
   addCartEvent () {
     const eventObj = this
     productList.addEventListener('click', function (e) {
-      eventObj.resetTotal()
       e.preventDefault()
+      const loading = e.target.querySelector('.loading')
+      const title = e.target.parentNode.querySelector('.product-title').innerHTML
+      loading.classList.remove('d-none')
+      eventObj.resetTotal()
       const addCartClass = e.target.getAttribute('class')
       if (addCartClass !== 'product-btn') {
         return
@@ -51,6 +54,10 @@ export default {
           quantity: eventObj.numCheck
         }
       }).then(res => {
+        loading.classList.add('d-none')
+        const info = `${title}`
+        const text = '已經加入到購物車'
+        Swal.fire(fadeAlertSet(true, info, text))
         getCartList().then(res => {
           eventObj.getData(res.data.carts)
           renderCartList(res.data)
@@ -65,6 +72,7 @@ export default {
     const eventObj = this
 
     cartTableList.addEventListener('click', function (e) {
+      const title = e.target.parentNode.parentNode.querySelector('.cardItem-title>p').innerHTML
       eventObj.resetTotal()
       e.preventDefault()
       const cartId = e.target.getAttribute('data-id')
@@ -73,6 +81,9 @@ export default {
       }
       instance.delete(`/${api_path}/carts/${cartId}`)
         .then(res => {
+          const info = `${title}`
+          const text = '已從購物車刪除'
+          Swal.fire(fadeAlertSet(false, info, text))
           getCartList().then(res => {
             eventObj.getData(res.data.carts)
             renderCartList(res.data)

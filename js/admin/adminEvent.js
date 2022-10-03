@@ -5,8 +5,8 @@ import { getOrdList } from '../admin.js'
 const { api_path, token, adminInstance } = config
 const discardAllBtn = document.querySelector('.discardAllBtn')
 
-export default{
-changeOrderStatus (status, id, checkBox, loading) {
+export default {
+  changeOrderStatus (status, id, checkBox, loading) {
     loading.classList.remove('d-none')
     let newStatus
     adminInstance.put(`/${api_path}/orders`, {
@@ -26,7 +26,7 @@ changeOrderStatus (status, id, checkBox, loading) {
       })
   },
 
-deleteOrderItem (id, loading) {
+  deleteOrderItem (id, loading) {
     loading.classList.remove('d-none')
     adminInstance.delete(`/${api_path}/orders/${id}`, {
       headers: {
@@ -37,26 +37,25 @@ deleteOrderItem (id, loading) {
         loading.classList.add('d-none')
         getOrdList()
       })
-},
+  },
 
-
-deleteAllOrder(){
-  discardAllBtn.addEventListener('click', (e) => {
-    adminInstance.delete(`/${api_path}/orders`, {
-      headers: {
-        Authorization: token
-      }
-    }).then(res => {
-      getOrdList()
-    }).catch(err => {
-      const info = JSON.parse(err.request.response).message.split(' ')[0]
-      Swal.fire(sweetAlertSet('info', info))
+  deleteAllOrder () {
+    discardAllBtn.addEventListener('click', (e) => {
+      adminInstance.delete(`/${api_path}/orders`, {
+        headers: {
+          Authorization: token
+        }
+      }).then(res => {
+        getOrdList()
+      }).catch(err => {
+        const info = JSON.parse(err.request.response).message.split(' ')[0]
+        Swal.fire(sweetAlertSet('info', info))
+      })
     })
-  })
-},
+  },
 
-init(orderList){
-    //在範圍設定事件
+  init (orderList) {
+    // 在範圍設定事件
     orderList.addEventListener('click', (e) => {
       e.preventDefault()
       const targetClass = e.target.getAttribute('class')
@@ -76,4 +75,4 @@ init(orderList){
 
     this.deleteAllOrder()
   }
-} 
+}

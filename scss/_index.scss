@@ -543,6 +543,7 @@
     object-fit: cover;
   }
   &-btn{
+    position: relative;
     display: block;
     background-color: $dark;
     color: $light;
@@ -553,6 +554,12 @@
     margin-bottom: 8px;
     text-decoration: none;
     transition: .1s all ease-in-out;
+    .loading{
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      transform: translate(-50%,-50%);
+    }
     &:hover{
       background-color:$secondary;
     }
@@ -583,6 +590,7 @@
 }
 
 .shopping{
+
   &-cart{
     background-color: $dark;
     padding: 60px 0;
@@ -591,6 +599,7 @@
     color: $light;
   }
   &-table{
+    
     margin: 0 auto;
     border-collapse: collapse;
     font-size: 1.25rem;

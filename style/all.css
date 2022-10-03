@@ -166,6 +166,15 @@ html {
   }
 }
 
+.fadeAlertSet-title {
+  font-size: 1.2rem !important;
+  color: #5188b1 !important;
+}
+
+.fadeAlertSet-icon {
+  font-size: .8rem !important;
+}
+
 .animated-bg {
   background-image: -webkit-gradient(linear, left top, right top, from(#e3e3e3), color-stop(10%, #ededed), color-stop(20%, #e3e3e3), to(#e3e3e3));
   background-image: linear-gradient(to right, #e3e3e3 0%, #ededed 10%, #e3e3e3 20%, #e3e3e3 100%);
@@ -1025,6 +1034,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 }
 
 .product-btn {
+  position: relative;
   display: block;
   background-color: #1d3342;
   color: #e0f1f1;
@@ -1036,6 +1046,14 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   text-decoration: none;
   -webkit-transition: .1s all ease-in-out;
   transition: .1s all ease-in-out;
+}
+
+.product-btn .loading {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .product-btn:hover {
