@@ -29,101 +29,81 @@ export default {
   },
 
   // 添加產品
-  addCartEvent () {
-    const eventObj = this
-    productList.addEventListener('click', function (e) {
-      e.preventDefault()
-      const loading = e.target.querySelector('.loading')
-      const title = e.target.parentNode.querySelector('.product-title')
-      const productId = e.target.getAttribute('data-id')
-      const selectNum = e.target.parentNode.querySelector('.product-quantity')
-      const quantity = parseInt(selectNum.value)
+  addProduct (e,thsObj) {
+    const title = e.target.parentNode.querySelector('.product-title')
+    const productId = e.target.getAttribute('data-id')
+    const selectNum = e.target.parentNode.querySelector('.product-quantity')
+    const quantity = parseInt(selectNum.value)
 
-      const addCartClass = e.target.getAttribute('class')
-      if (addCartClass !== 'product-btn') {
-        return
+    const addCartClass = e.target.getAttribute('class')
+    if (addCartClass !== 'product-btn') {
+      return
+    }
+
+    thsObj.resetTotal()
+    thsObj.numCheck = quantity
+    // 查看cartData是否已有此選項
+    thsObj.cartData.forEach(item => {
+      if (item.product.id === productId) {
+        thsObj.numCheck = item.quantity + quantity
       }
+    })
 
-      loading.classList.remove('d-none')
-      eventObj.resetTotal()
-      eventObj.numCheck = quantity
-      // 查看cartData是否已有此選項
-      eventObj.cartData.forEach(item => {
-        if (item.product.id === productId) {
-          eventObj.numCheck = item.quantity + quantity
-        }
-      })
-
-      instance.post(`/${api_path}/carts`, {
-        data: {
-          productId: productId,
-          quantity: eventObj.numCheck
-        }
-      }).then(res => {
-        loading.classList.add('d-none')
-        const info = `${title.innerHTML}`
-        const text = '已經加入到購物車'
-        Swal.fire(fadeAlertSet(true, info, text))
-        getCartList().then(res => {
-          eventObj.getData(res.data.carts)
-          renderCartList(res.data)
-          selectNum.value = 1
-          eventObj.numCheck = 1
-        })
+    instance.post(`/${api_path}/carts`, {
+      data: {
+        productId: productId,
+        quantity: thsObj.numCheck
+      }
+    }).then(res => {
+      const info = `${title.innerHTML}`
+      const text = '已經加入到購物車'
+      Swal.fire(fadeAlertSet(true, info, text))
+      getCartList().then(res => {
+        thsObj.getData(res.data.carts)
+        renderCartList(res.data)
+        selectNum.value = 1
+        thsObj.numCheck = 1
       })
     })
   },
-
+  deleteSingle(e,thsObj){
+    const title = e.target.parentNode.parentNode.querySelector('.cardItem-title>p').innerHTML
+    thsObj.resetTotal()
+    const cartId = e.target.getAttribute('data-id')
+    if (cartId === null) {
+      return
+    }
+    instance.delete(`/${api_path}/carts/${cartId}`)
+      .then(res => {
+        const info = `${title}`
+        const text = '已從購物車刪除'
+        Swal.fire(fadeAlertSet(false, info, text))
+        getCartList().then(res => {
+          thsObj.getData(res.data.carts)
+          renderCartList(res.data)
+        })
+      })
+  },
   // 刪除購物車
-  deleteCartEvent () {
-    const eventObj = this
-    cartTableList.addEventListener('click', function (e) {
-      const title = e.target.parentNode.parentNode.querySelector('.cardItem-title>p').innerHTML
-      eventObj.resetTotal()
-      e.preventDefault()
-      const cartId = e.target.getAttribute('data-id')
-      if (cartId === null) {
-        return
-      }
-      instance.delete(`/${api_path}/carts/${cartId}`)
-        .then(res => {
-          const info = `${title}`
-          const text = '已從購物車刪除'
-          Swal.fire(fadeAlertSet(false, info, text))
-          getCartList().then(res => {
-            eventObj.getData(res.data.carts)
-            renderCartList(res.data)
-          })
+  deleteAll (e,thsObj) {
+    if (thsObj.cartData.length) { thsObj.resetTotal() }
+    instance.delete(`/${api_path}/carts`)
+      .then(res => {
+        getCartList().then(res => {
+          thsObj.getData(res.data.carts)
+          renderCartList(res.data)
         })
-    })
-
-    // 刪除全部購物車
-    discardAllBtn.addEventListener('click', function (e) {
-      if (eventObj.cartData.length) { eventObj.resetTotal() }
-      e.preventDefault()
-      instance.delete(`/${api_path}/carts`)
-        .then(res => {
-          getCartList().then(res => {
-            eventObj.getData(res.data.carts)
-            renderCartList(res.data)
-          })
-        })
-        .catch(err => {
-          const { message } = JSON.parse(err.request.responseText)
-          const info = message.split(' ')[0]
-          Swal.fire(sweetAlertSet('info', info))
-        })
-    })
+      })
+      .catch(err => {
+        const { message } = JSON.parse(err.request.responseText)
+        const info = message.split(' ')[0]
+        Swal.fire(sweetAlertSet('info', info))
+      })
   },
   // 送出訂單
-  submitOder () {
-    const eventObj = this
-    orderInfoBtn.addEventListener('click', function (e) {
-      const loading = e.target.parentNode.querySelector('.loading')
-      e.preventDefault()
-
+  submitOder (e,thsObj) {
       // 判斷購物車是否為空
-      if (eventObj.cartData.length === 0) {
+      if (thsObj.cartData.length === 0) {
         const info = '購物車為空的'
         Swal.fire(sweetAlertSet('info', info))
         return
@@ -136,7 +116,6 @@ export default {
       orderInputStatus(errors, customerName, customerPhone, customerEmail, customerAddress, tradeWay)
       // post資料
       if (!errors) {
-        loading.classList.remove('d-none')
         instance.post(`/${api_path}/orders`, {
           data: {
             user: {
@@ -152,19 +131,36 @@ export default {
             const info = '訂單建立成功'
             Swal.fire(sweetAlertSet('success', info))
             document.querySelector('.orderInfo-form').reset()
-            loading.classList.add('d-none')
             getCartList().then(res => {
-              eventObj.getData(res.data.carts)
+              thsObj.getData(res.data.carts)
               renderCartList(res.data)
             })
           })
       }
-    })
+    
   },
 
   init () {
-    this.addCartEvent()
-    this.deleteCartEvent()
-    this.submitOder()
+    const thsObj = this
+
+    function debounce(func,delay){
+      let timer
+      return function(e){
+        e.preventDefault()
+        const loading = e.target.parentNode.querySelector('.loading')
+        if(loading){loading.classList.remove('d-none')}
+        
+        clearTimeout(timer)
+        timer = setTimeout(function(){
+          if(loading){loading.classList.add('d-none')}
+          func(e,thsObj)
+        },delay)
+      }
+    }
+
+    productList.addEventListener('click', debounce(thsObj.addProduct,500))
+    cartTableList.addEventListener('click', debounce(thsObj.deleteSingle,500))
+    discardAllBtn.addEventListener('click', debounce(thsObj.deleteAll,500))
+    orderInfoBtn.addEventListener('click', debounce(thsObj.submitOder,500))
   }
 }
