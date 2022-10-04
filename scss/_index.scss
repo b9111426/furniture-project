@@ -33,9 +33,7 @@
 
   & .logo>a{
     font-size: 1.5rem;
-    @include pad(){
-      padding-left: 24px;
-    }
+    padding: 0 1.5rem;
   }
 
   &-menu{
@@ -81,6 +79,9 @@
       transform: translate(0,-50%);
       color: $primary;
       transition: all .5s;
+    }
+    @include laptop(){
+      padding: 18px 15px;
     }
     @include pad(){
       text-align: center;
@@ -152,10 +153,13 @@
     top: 50%;
     left: 0;
     transform: translate(-50%,-50%);
+    @include laptop(){
+      display: none;
+    }
   }
   &-deco{
-    height: 2000px;
-    width: 1500px;
+    height: 250vh;
+    width: 100vw;
     background-color:$secondary;
     opacity: .7;
     transform: rotate(30deg);
@@ -166,13 +170,25 @@
     color: $primary;
     font-size: 5rem;
     letter-spacing: .5rem;
-    left: 15%;
+    left: 30%;
     top: 30%;
+    transform: translate(-50%,0);
     font-weight: 600;
+    @include laptop(){
+      left:50%;
+      font-size: 6.5rem;
+    }
+    @include phone(){
+      left:50%;
+      font-size: 4.5rem;
+    }
   }
   &-textAfter{
     font-weight: 300;
     margin-left: 5rem;
+    @include phone(){
+      margin-left: 0;
+    }
   }
   &-circular{
     position: absolute;
@@ -210,14 +226,14 @@
 .bedAdvantage {
   display: flex;
   justify-content: space-between;
-  padding: 1rem .5rem;
+  padding: 0 .5rem;
   @include pad(){
     display: block;
     margin: 0 10px;
   }
   &-box{
     position: relative;
-    max-width: 31.33333%;
+    max-width: 33.33333%;
     min-height: 200px;
     background-color: $dark;
     padding: .5rem;
@@ -262,20 +278,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5%;
     @include laptop(){
       width: 100%;
       height: 100vw;
     }
 
     &-content{
-      max-width: 50%;
+      max-width: 100%;
       background-color: $light;
-      padding: 50px;
+      padding: 10%;
       text-align: center;
-      @include pad(){
-        max-width: 70%;
-        padding: 25px;
-      }
+
     }
     &-title{
       text-align: center;
@@ -289,7 +303,7 @@
         margin-left: .5rem;
         white-space: nowrap;
       }
-      @include pad(){
+      @include phone(){
         font-size: 1.2rem;
       }
     }
@@ -298,22 +312,17 @@
       white-space: nowrap;
     }
     &-list{
-      width: 50%;
-      padding-left: 1rem;
-      margin: 1rem auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: inline-block;
+      padding: .5rem 1rem;
       border-left: 1px solid $dark;
-
     }
     &-list>li{
       white-space: nowrap;
       color: $dark;
       text-align: left;
       font-size: 1.5rem;
-      margin-top: .5rem;
-      @include pad(){
+      margin-bottom: .5rem;
+      @include phone(){
         font-size: 1rem;
       }
     }
@@ -324,7 +333,7 @@
     height: 25vw;
     text-align: center;
     float: left;
-    @include pad(){
+    @include laptop(){
       height: 50vw;
     }
 
@@ -483,6 +492,7 @@
     align-items: center;
     justify-content: space-between;
     max-width: 700px;
+    padding: 0 30px;
     margin: 40px auto;
   }
 
@@ -492,21 +502,25 @@
     align-items: center;
     flex-direction: column;
     position: relative;
-    &:nth-child(1)::after, &:nth-child(2)::after, &:nth-child(3)::after {
+  &:not(:last-child)::after {
       content: "";
       position: absolute;
-      top: 35%;
+      top: 58px;
       right: 0;
-      width: 69px;
-      transform: translate(97%,-50%);
-      border: 3px solid $dark;
+      width: 60px;
+      height: 5px;
+      background-color:$dark;
+      transform: translate(100%,-50%);
+      @include pad(){
+        display: none;
+      }
     }
   }
 
   &-card .cardImg{
     color: $dark;
-    width: 115px;
-    height: 115px;
+    width: 116px;
+    height: 116px;
     border: 4px solid $dark;
     border-radius: 50%;
     display: flex;
@@ -514,9 +528,10 @@
     align-items: center;
     margin-bottom: 8px;
 
-    @include pad(){
-      width: 70px;
-      height: 70px;
+
+    @include phone(){
+      width: 60px;
+      height: 60px;
     }
   }
 
@@ -524,9 +539,23 @@
     font-size: 50px;
   }
 
-  &-card h4 {
+  &-card>h4 {
     font-size: 1.25rem;
     font-weight: bold;
+    @include phone(){
+      font-size: 1rem;
+    }
+  }
+  &-card>p{
+    font-size: 1.2rem;
+    @include phone(){
+      font-size: .8rem;
+    }
+  }
+  &-card>p>span{
+    @include phone(){
+      display: none;
+    }
   }
 }
 .product{
@@ -566,15 +595,15 @@
     margin-bottom: 8px;
     text-decoration: none;
     transition: .1s all ease-in-out;
-    .loading{
-      position: absolute;
-      top: 50%;
-      left: 20%;
-      transform: translate(-50%,-50%);
-    }
     &:hover{
       background-color:$secondary;
     }
+  }
+  &-btn>.loading{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%,-50%);
   }
   &-title{
     font-size: 1.25rem;
@@ -726,7 +755,7 @@
     margin: 0 auto;
     padding: 30px 15px;
     background-color: $gray;
-
+    text-align: center;
   }
   &-formGroup{
     max-width: 365px;
@@ -739,6 +768,7 @@
   &-label{
     display: block;
     margin-bottom: 3px;
+    text-align: left;
   }
   &-inputWrap{
     position: relative;
@@ -759,13 +789,25 @@
     border: 0;
     cursor: pointer;
     font-size: 1.25rem;
-    margin: 50px auto 0;
     border-radius: 5px;
     transition: .1s all ease-in-out;
     &:hover{
       background-color:$secondary;
       color: $white;
     }
+  }
+  &-btnGroup{
+    display: inline-block;
+    position: relative;
+    margin: 50px auto 0;
+    margin: 0 auto;
+
+  }
+  &-loading{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%,-50%);
   }
 }
 

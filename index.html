@@ -44,9 +44,9 @@
         <span class="material-icons">expand_more</span>
       </a>
     </section>
-    <section class="wrap" id="bedAdvantage">
+    <section class="wrap m-b" id="bedAdvantage">
         <h3 class="section-title">產品特色</h3>
-        <ul class="bedAdvantage m-b">
+        <ul class="bedAdvantage">
             <li class="bedAdvantage-box">
                 <img class="bedAdvantage-img" src="./asset/advantage01.png" alt="原木料環保">
                 <p class="bedAdvantage-text">原木料環保</p>
@@ -62,7 +62,6 @@
                 <p class="bedAdvantage-text">好組裝</p>
             </li>
         </ul>
-        
     </section>
     <section class="feature-container" id="bedFeature">
       <div class="feature-left">
@@ -116,7 +115,7 @@
                   </span>
               </div>
               <h4>STEP.2</h4>
-              <p>填寫預定資料</p>
+              <p>填寫<span>預定</span>資料</p>
           </li>
           <li class="transport-card">
               <div class="cardImg">
@@ -419,7 +418,10 @@
                     <p class="errMessages 交易方式"></p>
                 </div>
             </div>
-            <input type="submit" value="送出預訂資料" class="orderInfo-btn">
+            <div class="orderInfo-btnGroup">
+              <input type="submit" value="送出預訂資料" class="orderInfo-btn">
+              <img class='loading orderInfo-loading d-none' src="./asset/load.gif" alt="">
+            </div>
         </form>
     </section>
   </div>

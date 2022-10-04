@@ -1,19 +1,20 @@
 .chart{
   &-section{
-    margin-top: 70px;
-    padding: 10px;
-  }
-  &-box{
-    background-color: $white;
-    border: 1px solid $gray;
-    padding: 15px 30px;
-    border-radius: 10px;
-    margin:$gutter;
-  }
-  &-info{
     width: 100%;
-    max-width: 31.33333%;
+    margin-top: 70px;
+    padding: 10px 0;
+  }
+
+  &-col{
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: 33.33333%;
     color:$black;
+    padding: $gutter;
+    @include pad(){
+      width: 100%;
+      padding: $gutter-l;
+    }
   }
   &-num{
     font-size: 3rem;
@@ -23,13 +24,35 @@
     font-size: 1.5rem;
   }
   &-left{
-    width: 100%;
-    max-width: 31.33333%;
+    flex: 0 0 auto;
+    width: 35%;
+    padding: $gutter;
+    @include pad(){
+      width: 100%;
+      padding: $gutter-l;
+    }
   }
   &-right{
-    width: 100%;
-    max-width: 62.66666%;
+    flex: 0 0 auto;
+    width: 65%;
+    padding: $gutter;
+    @include pad(){
+      width: 100%;
+      padding: $gutter-l;
+    }
   }
+  &-box{
+    height: 100%;
+    padding: 20px;
+    background-color: $white;
+    outline: 1px solid $gray;
+    border-radius: 10px;
+  }
+}
+.earnChart{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .totalCounted{
   color:$primary;
@@ -37,7 +60,7 @@
 
 .orderPage{
   &-list{
-    padding: 30px 10px;
+    padding: $gutter;
     display: flex;
     flex-direction: column;
   }
@@ -152,8 +175,4 @@
   border-right: 1px solid $white;
 }
 
-.earnChart{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+

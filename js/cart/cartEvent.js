@@ -34,18 +34,20 @@ export default {
     productList.addEventListener('click', function (e) {
       e.preventDefault()
       const loading = e.target.querySelector('.loading')
-      const title = e.target.parentNode.querySelector('.product-title').innerHTML
+      const title = e.target.parentNode.querySelector('.product-title')
       const productId = e.target.getAttribute('data-id')
       const selectNum = e.target.parentNode.querySelector('.product-quantity')
       const quantity = parseInt(selectNum.value)
 
-      loading.classList.remove('d-none')
-      eventObj.resetTotal()
       const addCartClass = e.target.getAttribute('class')
-      console.log(addCartClass);
       if (addCartClass !== 'product-btn') {
         return
       }
+
+      loading.classList.remove('d-none')
+      eventObj.resetTotal()
+      eventObj.numCheck = quantity
+      // 查看cartData是否已有此選項
       eventObj.cartData.forEach(item => {
         if (item.product.id === productId) {
           eventObj.numCheck = item.quantity + quantity
@@ -59,13 +61,13 @@ export default {
         }
       }).then(res => {
         loading.classList.add('d-none')
-        const info = `${title}`
+        const info = `${title.innerHTML}`
         const text = '已經加入到購物車'
         Swal.fire(fadeAlertSet(true, info, text))
         getCartList().then(res => {
           eventObj.getData(res.data.carts)
           renderCartList(res.data)
-          selectNum.value= 1
+          selectNum.value = 1
           eventObj.numCheck = 1
         })
       })
@@ -117,6 +119,7 @@ export default {
   submitOder () {
     const eventObj = this
     orderInfoBtn.addEventListener('click', function (e) {
+      const loading = e.target.parentNode.querySelector('.loading')
       e.preventDefault()
 
       // 判斷購物車是否為空
@@ -132,7 +135,8 @@ export default {
       // 表單errors效果
       orderInputStatus(errors, customerName, customerPhone, customerEmail, customerAddress, tradeWay)
       // post資料
-      if(!errors){
+      if (!errors) {
+        loading.classList.remove('d-none')
         instance.post(`/${api_path}/orders`, {
           data: {
             user: {
@@ -148,11 +152,12 @@ export default {
             const info = '訂單建立成功'
             Swal.fire(sweetAlertSet('success', info))
             document.querySelector('.orderInfo-form').reset()
+            loading.classList.add('d-none')
             getCartList().then(res => {
               eventObj.getData(res.data.carts)
               renderCartList(res.data)
             })
-        })
+          })
       }
     })
   },
