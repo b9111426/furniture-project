@@ -533,22 +533,14 @@
   &-display{
     padding: 30px 15px;
   }
-  &-select{
-    border: 1px solid $bright-gray;
-    color: $gray;
-    min-height: 38px;
-    min-width: 255px;
-    text-indent: 10px;
-    margin-bottom: 30px;
-  }
+
   &-wrap{
     display: flex;
     flex-wrap: wrap;
   }
   &-card{
     position: relative;
-    margin: 0 $gutter-l;
-    margin-bottom: $gutter;
+    margin: $gutter-l;
     width: 23%;
     @include laptop(){
       width: 48%;
@@ -599,6 +591,38 @@
     min-height: 350px;
     width: 100%;
   }
+  &-quantity{
+    height:2rem;
+    width: 3rem;
+    text-indent:10px;
+  }
+  &-quantity~span{
+    margin-left: .5rem;
+  }
+  &-box{
+    height: 38px;
+    display: flex;
+    margin: $gutter-l $gutter;
+  }
+  &-select{
+    min-height: 38px;
+    min-width: 255px;
+    text-indent: 10px;
+  }
+  &-sort{
+    margin: 0 $gutter-l;
+    text-decoration: none;
+    color: $black;
+    background-color: $bright-gray ;
+    padding: .5rem 1rem;
+    border: 1px solid $black;
+    transition: .3s all ease-in-out;
+    &:hover{
+      background-color: $primary;
+      color: $white;
+      border: 1px solid $primary;
+    }
+  }
 }
 
 .originPrice {
@@ -606,7 +630,9 @@
   color: $gray;
 }
 .nowPrice {
-  font-size: 1.75rem;
+  margin-left: .5;
+  font-size: 1.5rem;
+  display: inline;
 }
 
 .shopping{

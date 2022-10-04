@@ -35,16 +35,20 @@ export default {
       e.preventDefault()
       const loading = e.target.querySelector('.loading')
       const title = e.target.parentNode.querySelector('.product-title').innerHTML
+      const productId = e.target.getAttribute('data-id')
+      const selectNum = e.target.parentNode.querySelector('.product-quantity')
+      const quantity = parseInt(selectNum.value)
+
       loading.classList.remove('d-none')
       eventObj.resetTotal()
       const addCartClass = e.target.getAttribute('class')
+      console.log(addCartClass);
       if (addCartClass !== 'product-btn') {
         return
       }
-      const productId = e.target.getAttribute('data-id')
       eventObj.cartData.forEach(item => {
         if (item.product.id === productId) {
-          eventObj.numCheck = item.quantity + 1
+          eventObj.numCheck = item.quantity + quantity
         }
       })
 
@@ -61,6 +65,7 @@ export default {
         getCartList().then(res => {
           eventObj.getData(res.data.carts)
           renderCartList(res.data)
+          selectNum.value= 1
           eventObj.numCheck = 1
         })
       })
@@ -70,7 +75,6 @@ export default {
   // 刪除購物車
   deleteCartEvent () {
     const eventObj = this
-
     cartTableList.addEventListener('click', function (e) {
       const title = e.target.parentNode.parentNode.querySelector('.cardItem-title>p').innerHTML
       eventObj.resetTotal()
@@ -127,28 +131,29 @@ export default {
 
       // 表單errors效果
       orderInputStatus(errors, customerName, customerPhone, customerEmail, customerAddress, tradeWay)
-
       // post資料
-      instance.post(`/${api_path}/orders`, {
-        data: {
-          user: {
-            name: customerName.value,
-            tel: customerPhone.value,
-            email: customerEmail.value,
-            address: customerAddress.value,
-            payment: tradeWay.value
+      if(!errors){
+        instance.post(`/${api_path}/orders`, {
+          data: {
+            user: {
+              name: customerName.value.trim(),
+              tel: customerPhone.value.substr(1),
+              email: customerEmail.value.trim(),
+              address: customerAddress.value.trim(),
+              payment: tradeWay.value
+            }
           }
-        }
-      })
-        .then(res => {
-          const info = '訂單建立成功'
-          Swal.fire(sweetAlertSet('success', info))
-          document.querySelector('.orderInfo-form').reset()
-          getCartList().then(res => {
-            eventObj.getData(res.data.carts)
-            renderCartList(res.data)
-          })
         })
+          .then(res => {
+            const info = '訂單建立成功'
+            Swal.fire(sweetAlertSet('success', info))
+            document.querySelector('.orderInfo-form').reset()
+            getCartList().then(res => {
+              eventObj.getData(res.data.carts)
+              renderCartList(res.data)
+            })
+        })
+      }
     })
   },
 

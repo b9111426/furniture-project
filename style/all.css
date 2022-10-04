@@ -1019,15 +1019,6 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   padding: 30px 15px;
 }
 
-.product-select {
-  border: 1px solid #f8f8f8;
-  color: #ccc;
-  min-height: 38px;
-  min-width: 255px;
-  text-indent: 10px;
-  margin-bottom: 30px;
-}
-
 .product-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1038,8 +1029,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 
 .product-card {
   position: relative;
-  margin: 0 1%;
-  margin-bottom: 0.5%;
+  margin: 1%;
   width: 23%;
 }
 
@@ -1107,13 +1097,56 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   width: 100%;
 }
 
+.product-quantity {
+  height: 2rem;
+  width: 3rem;
+  text-indent: 10px;
+}
+
+.product-quantity ~ span {
+  margin-left: .5rem;
+}
+
+.product-box {
+  height: 38px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1% 0.5%;
+}
+
+.product-select {
+  min-height: 38px;
+  min-width: 255px;
+  text-indent: 10px;
+}
+
+.product-sort {
+  margin: 0 1%;
+  text-decoration: none;
+  color: #2c2c2c;
+  background-color: #f8f8f8;
+  padding: .5rem 1rem;
+  border: 1px solid #2c2c2c;
+  -webkit-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+}
+
+.product-sort:hover {
+  background-color: #5188b1;
+  color: #fff;
+  border: 1px solid #5188b1;
+}
+
 .originPrice {
   font-size: 1.25rem;
   color: #ccc;
 }
 
 .nowPrice {
-  font-size: 1.75rem;
+  margin-left: .5;
+  font-size: 1.5rem;
+  display: inline;
 }
 
 .shopping-cart {
