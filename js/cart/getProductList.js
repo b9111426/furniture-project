@@ -16,6 +16,7 @@ export const getProductList = () => {
   instance.get(`/${api_path}/products`)
     .then(res => {
       data.productData = res.data.products
+      data.newAry = res.data.products
       renderProduct(data.productData)
     })
     .catch(err => {
