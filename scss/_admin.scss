@@ -2,7 +2,7 @@
   &-section{
     width: 100%;
     margin-top: 70px;
-    padding: 10px 0;
+    padding:$gutter-l;
   }
 
   &-col{
@@ -60,9 +60,9 @@
 
 .orderPage{
   &-list{
-    padding: $gutter;
     display: flex;
     flex-direction: column;
+    padding: $gutter-l;
   }
 
   &-list .discardAllBtn{
@@ -133,18 +133,17 @@
     display: flex;
     align-items: center;
     position: relative;
-    .loading{
-      position: absolute;
-    }
   }
-
+  &-toggleBtn>.loading{
+    position: absolute;
+  }
   &-deleteBtn{
     display: flex;
     align-items: center;
     position: relative;
-    .loading{
-      position: absolute;
-    }
+  }
+  &-deleteBtn>.loading{
+    position: absolute;
   }
 }
 

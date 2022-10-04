@@ -1420,7 +1420,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 .chart-section {
   width: 100%;
   margin-top: 70px;
-  padding: 10px 0;
+  padding: 1%;
 }
 
 .chart-col {
@@ -1505,7 +1505,6 @@ input[type='checkbox']:checked + .toggle-switch > .done {
 }
 
 .orderPage-list {
-  padding: 0.5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1513,6 +1512,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding: 1%;
 }
 
 .orderPage-list .discardAllBtn {
@@ -1601,7 +1601,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   position: relative;
 }
 
-.orderPage-toggleBtn .loading {
+.orderPage-toggleBtn > .loading {
   position: absolute;
 }
 
@@ -1615,7 +1615,7 @@ input[type='checkbox']:checked + .toggle-switch > .done {
   position: relative;
 }
 
-.orderPage-deleteBtn .loading {
+.orderPage-deleteBtn > .loading {
   position: absolute;
 }
 
