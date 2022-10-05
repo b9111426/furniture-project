@@ -2,6 +2,7 @@ import config from './asset/config.js'
 import { totalProductsNum } from './admin/totalProductNum.js'
 import { renderC3 } from './libs/renderC3.js'
 import adminEvent from './admin/adminEvent.js'
+import { menuToggle } from './asset/menuToggle.js'
 
 const { api_path, token, adminInstance } = config
 const orderList = document.querySelector('.js-orderList')
@@ -42,7 +43,6 @@ export function getOrdList () {
           if (productItem) { productStr += `<p>${productItem.title}x${productItem.quantity}</p>` }
         })
 
-
         // 組產品字串
         str += /* html */`
           <tr>
@@ -82,18 +82,17 @@ export function getOrdList () {
         orderList.innerHTML = '<tr class="emptyOrder"><td></td><td  colspan="6">無訂單資料</td><td></td></tr>'
       }
 
-      //列表資訊
-      const {totalNum} = totalProductsNum(productObject)
+      // 列表資訊
+      const { totalNum } = totalProductsNum(productObject)
       productsNum.textContent = totalNum
       totalOrders.textContent = orderData.length
       totalCounted.textContent = totalCountedNum.toString()
 
       renderC3(productObject)
-      
+      adminEvent.init(orderList)
     })
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  adminEvent.init(orderList)
+document.addEventListener('DOMContentLoaded', () => {
+  menuToggle()
 })
-

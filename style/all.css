@@ -76,15 +76,7 @@ html {
 }
 
 html::-webkit-scrollbar {
-  background-color: #1d3342;
-  overflow-y: auto;
-  height: 10px;
-  width: 10px;
-}
-
-html::-webkit-scrollbar-thumb {
-  background-color: #aed265;
-  border-radius: 5px;
+  display: none;
 }
 
 .wrap {
