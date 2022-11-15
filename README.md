@@ -31,5 +31,8 @@
 </a>
 
 ## 套件使用
-
+- axios
+- sweetalert2
+- Validate.js驗證套件
+- Lottie動畫套用
 
