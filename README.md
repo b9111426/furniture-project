@@ -15,3 +15,17 @@
 - 後台
   - 訂單刪除、修改
   - D3圖表套件運用
+  ---
+# 技術使用 
+<a href="">
+    <img height="50" src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg"/>
+</a>
+<a href="">
+    <img height="50" src="https://www.vectorlogo.zone/logos/w3_css/w3_css-icon.svg"/>
+</a>
+<a href="">
+    <img height="50" src="https://www.vectorlogo.zone/logos/sass-lang/sass-lang-icon.svg"/>
+</a>
+<a href="">
+    <img height="50" src="https://upload.vectorlogo.zone/logos/javascript/images/239ec8a4-163e-4792-83b6-3f6d96911757.svg"/>
+</a>
