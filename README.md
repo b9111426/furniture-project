@@ -33,6 +33,6 @@
 ## 套件使用
 - axios
 - sweetalert2
-- Validate.js驗證套件
-- Lottie動畫套用
+- Validate.js 驗證套件
+- Lottie 動畫套用
 
